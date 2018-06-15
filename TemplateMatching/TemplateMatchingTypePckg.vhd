@@ -13,7 +13,7 @@ package TemplateMatchingTypePckg is
   constant TEMPLATE_SIZE  : natural := 32;
   constant SCORE_MAX      : natural := TEMPLATE_SIZE*TEMPLATE_SIZE*(2**(PIXEL_SIZE));
   
-  subtype Pixel_t  is std_logic_vector(PIXEL_SIZE-1 downto 0);
+  subtype Pixel_t  is unsigned(PIXEL_SIZE-1 downto 0);
   type ImageRow_t  is array(0 to IMAGE_WIDTH-1) of Pixel_t;
   
   type WindowRow_t is array(0 to TEMPLATE_SIZE-1) of Pixel_t;
