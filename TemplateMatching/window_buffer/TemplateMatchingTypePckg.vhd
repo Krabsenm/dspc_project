@@ -23,8 +23,4 @@ package TemplateMatchingTypePckg is
   subtype X_t      is integer range 0 to IMAGE_WIDTH-1;
   subtype Y_t      is integer range 0 to IMAGE_HEIGHT-1;
   
-  
-  constant Pixel_t_init : Pixel_t := (others => '0');
-  constant ImageRow_t_init : ImageRow_t := (others => Pixel_t_init);
-  
 end package;

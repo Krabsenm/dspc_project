@@ -1,0 +1,201 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+dC:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer
+Pio_utils
+Z0 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z1 w1486117004
+Z2 dC:/Users/jonas/source/repos/dspc_project/TemplateMatching/pixel_buffer
+Z3 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/pixel_buffer/io_utils.vhd
+Z4 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/pixel_buffer/io_utils.vhd
+l0
+L11
+V>[0j93z75z:8XZ]2=YZgh1
+!s100 Z6;BH6@DoYHId?Qc0O<kd2
+Z5 OV;C;10.5b;63
+32
+b1
+Z6 !s110 1529067076
+!i10b 1
+Z7 !s108 1529067076.000000
+Z8 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/pixel_buffer/io_utils.vhd|
+Z9 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/pixel_buffer/io_utils.vhd|
+!i113 1
+Z10 o-work work -2002 -explicit
+Z11 tExplicit 1 CvgOpt 0
+Bbody
+Z12 DPx4 work 8 io_utils 0 22 >[0j93z75z:8XZ]2=YZgh1
+R0
+l0
+L42
+Z13 V>W@2C1gB@9]iAQL0:ajbT0
+Z14 !s100 eDHB5K3Rmah=nTURXn]od0
+R5
+32
+R6
+!i10b 1
+R7
+R8
+R9
+!i113 1
+R10
+R11
+Epixel_buffer
+Z15 w1529064882
+Z16 DPx4 work 24 templatematchingtypepckg 0 22 441V<kX7d@O>:EFBaV?c12
+Z17 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+Z18 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R0
+Z19 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R2
+Z20 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/pixel_buffer/pixel_buffer.vhd
+Z21 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/pixel_buffer/pixel_buffer.vhd
+l0
+L9
+V?P0Q8XJNhe3eHHnkWd3Vd1
+!s100 fm=zT97VXmAH_i]D5L:6E2
+R5
+32
+R6
+!i10b 1
+R7
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/pixel_buffer/pixel_buffer.vhd|
+Z23 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/pixel_buffer/pixel_buffer.vhd|
+!i113 1
+R10
+R11
+Aarch
+R16
+R17
+R18
+R0
+R19
+Z24 DEx4 work 12 pixel_buffer 0 22 ?P0Q8XJNhe3eHHnkWd3Vd1
+l35
+L33
+VAPjo[:iIAodLcnLFN=7TM1
+!s100 ANjg@9RANR7]Glm5zN1hF3
+R5
+32
+R6
+!i10b 1
+R7
+R22
+R23
+!i113 1
+R10
+R11
+Epixel_buffer_tb
+Z25 w1529067057
+R12
+R16
+R17
+R18
+R0
+R19
+R2
+Z26 8C:\Users\jonas\source\repos\dspc_project\TemplateMatching\pixel_buffer\pixel_buffer_tb.vhd
+Z27 FC:\Users\jonas\source\repos\dspc_project\TemplateMatching\pixel_buffer\pixel_buffer_tb.vhd
+l0
+L10
+V@ilHQXQXKBLbU6RFXk3?61
+!s100 K=0Ai>Q@4daCJ8@?l7^[C0
+R5
+32
+R6
+!i10b 1
+R7
+Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:\Users\jonas\source\repos\dspc_project\TemplateMatching\pixel_buffer\pixel_buffer_tb.vhd|
+Z29 !s107 C:\Users\jonas\source\repos\dspc_project\TemplateMatching\pixel_buffer\pixel_buffer_tb.vhd|
+!i113 1
+R10
+R11
+Abhv
+R24
+R12
+R16
+R17
+R18
+R0
+R19
+DEx4 work 15 pixel_buffer_tb 0 22 @ilHQXQXKBLbU6RFXk3?61
+l43
+L21
+VZzkOAYTcg@AOdP7Ul;ZTR1
+!s100 :CdYSUdP?ZNnlPc`o=goi0
+R5
+32
+R6
+!i10b 1
+R7
+R28
+R29
+!i113 1
+R10
+R11
+Ptemplatematchingtypepckg
+R17
+R18
+R0
+R19
+w1526463823
+R2
+8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/TemplateMatchingTypePckg.vhd
+FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/TemplateMatchingTypePckg.vhd
+l0
+L8
+V441V<kX7d@O>:EFBaV?c12
+!s100 9F:m:BfT4z[RN0k_X9oPR2
+R5
+32
+R6
+!i10b 1
+R7
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/TemplateMatchingTypePckg.vhd|
+!s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/TemplateMatchingTypePckg.vhd|
+!i113 1
+R10
+R11
+Etest
+R1
+R2
+R3
+R4
+l0
+L240
+V24Z]RAB]i?QLoAkX7^ZBf1
+!s100 4YZ5hiXM;VB0zeAMJKOf82
+R5
+32
+R6
+!i10b 1
+R7
+R8
+R9
+!i113 1
+R10
+R11
+Ahex_test
+Z30 DEx4 work 4 test 0 22 24Z]RAB]i?QLoAkX7^ZBf1
+R12
+R0
+l245
+L244
+Z31 V:Y[ZDk6oJY?h7cQ@_4eoG1
+Z32 !s100 azBGYL6PhJ`:QGLMc6;4J2
+R5
+32
+R6
+!i10b 1
+R7
+R8
+R9
+!i113 1
+R10
+R11
