@@ -1,0 +1,7 @@
+{
+	"common_dir" : "C:/projects/dspc/dspc_work_max10/edge_detection_max10/",
+	"acds_version" : "Version 17.1.0",
+	"platform" : "windows",
+	"os" : "Windows 10",
+	"qpf" : "soc_system.qpf"
+}

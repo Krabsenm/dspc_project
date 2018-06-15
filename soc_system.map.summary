@@ -1,0 +1,16 @@
+Analysis & Synthesis Status : Successful - Wed May 16 08:56:41 2018
+Quartus Prime Version : 17.1.0 Build 590 10/25/2017 SJ Standard Edition
+Revision Name : soc_system
+Top-level Entity Name : edge_detection_top
+Family : MAX 10
+Total logic elements : 5,617
+    Total combinational functions : 4,879
+    Dedicated logic registers : 3,617
+Total registers : 3617
+Total pins : 113
+Total virtual pins : 0
+Total memory bits : 1,301,336
+Embedded Multiplier 9-bit elements : 0
+Total PLLs : 2
+UFM blocks : 0
+ADC blocks : 0
