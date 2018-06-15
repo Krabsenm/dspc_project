@@ -17,22 +17,22 @@ architecture test_bench of SAD_tb is
   -----------------------------
   -- Stimulus Signals 
   -----------------------------
-signal   clk_50MHz     : STD_LOGIC;
-signal   reset_n       : STD_LOGIC;
+signal   clk_50MHz     : std_logic  := '1';
+signal   reset_n       : std_logic  := '0';
 
 signal  window_in      : Window_t;
 signal  template       : Window_t;
 signal  x_in           : X_t;
 signal  y_in           : Y_t;
-signal  valid_in       : STD_LOGIC;
+signal  valid_in       : std_logic := '0';
 
   -----------------------------
   -- Observed Signals 
   -----------------------------
-signal  score_out     : Score_t;
+signal  score_out     : Score_t := 262144;
 signal  x_out         : X_t;
-signal  y_out         : Y_t 
-signal  valid_out            : STD_LOGIC; 
+signal  y_out         : Y_t;
+signal  valid_out     : std_logic := '0'; 
   
 
   -----------------------------
@@ -62,21 +62,20 @@ begin  -- architecture Bhv
   uut: entity work.SAD
    port map (
 	  -- Inputs
-      clk_50MHz            => clk_50MHz;
-      reset                => reset_n;
+      clk_50MHz            => clk_50MHz,
+      reset                => reset_n,
       -- inputs from softcore 
-      template             =>    template;
+      template             => template,
       -- inputs from window buffer
-      windiw_in            =>    window_in;
-      x_in                 =>    x_in;
-      y_in                 =>    y_in;
-      valid_in             =>    valid_in;
+      windiw_in            => window_in,
+      x_in                 => x_in,
+      y_in                 => y_in,
+      valid_in             => valid_in,
       -- Outputs
-      score_out             =>   score_out;  
-      valid_out             =>   valid_out;
-      x_out                 =>   x_out;
-      y_out                 =>   y_out
-  ); 
+      score_out             => score_out,  
+      valid_out             => valid_out,
+      x_out                 => x_out,
+      y_out                 => y_out); 
 
    
   -----------------------------
@@ -84,26 +83,33 @@ begin  -- architecture Bhv
   -----------------------------
    
   StimuliProcess : process
-    variable win_in : Window_t := '1';
-    variable linecount : integer range 0 to image_height;
-
   
-  
-  
+	variable pixel : Pixel_t := "11111111";
+	variable rows : WindowRow_t := (others => pixel);
+ 
+ 
   begin
 
+  window_in      <= (others => rows);
+  template       <= (others => rows);
+  x_in           <= 1;
+  y_in           <= 1;
   
-  window_in      <= ;
-  template       : Window_t;
-  x_in           : X_t;
-  y_in           : Y_t;
-  valid_in       : STD_LOGIC;
+    wait until reset_n = '0'; -- reset
+    wait for clockperiod; -- one clock periode idle before start 
+	wait until clk_50MHz = '1'; -- Align clock
+   
+	valid_in <= '1';
   
-  
-  
-  
-  
-  
+	wait for clockperiod;
+	wait for clockperiod;
+	wait for clockperiod;
+	wait for clockperiod;
+		
+	assert (score_out = 0)
+	report "score_out = 0"
+	severity error;
+	
   end process StimuliProcess;
   
   
