@@ -29,7 +29,7 @@ signal  valid_in       : std_logic := '0';
   -----------------------------
   -- Observed Signals 
   -----------------------------
-signal  score_out     : Score_t := 262144;
+signal  score_out     : Score_t := (others => '1');
 signal  x_out         : X_t;
 signal  y_out         : Y_t;
 signal  valid_out     : std_logic := '0'; 
@@ -54,7 +54,7 @@ begin  -- architecture Bhv
   -----------------------------
   -- reset generation 
   -----------------------------
-  reset_n         <= '1', '0' after 125 ns;
+  reset_n         <= '0', '1' after 125 ns;
  
   -----------------------------
   -- component instantiation 
@@ -63,11 +63,11 @@ begin  -- architecture Bhv
    port map (
 	  -- Inputs
       clk_50MHz            => clk_50MHz,
-      reset                => reset_n,
+      reset_n                => reset_n,
       -- inputs from softcore 
       template             => template,
       -- inputs from window buffer
-      windiw_in            => window_in,
+      window_in            => window_in,
       x_in                 => x_in,
       y_in                 => y_in,
       valid_in             => valid_in,
@@ -81,48 +81,45 @@ begin  -- architecture Bhv
   -----------------------------
   -- stimuli process 
   -----------------------------
-   
+  
+  
   StimuliProcess : process
   
-	variable pixel : Pixel_t := "11111111";
+	variable pixel : Pixel_t := "10101010";
+	variable pixel0 : Pixel_t := "01010101";
 	variable rows : WindowRow_t := (others => pixel);
- 
- 
+	variable rows0 : WindowRow_t := (others => pixel0);
+	variable output_sc : integer range 0 to 300000; 
   begin
 
-  window_in      <= (others => rows);
-  template       <= (others => rows);
-  x_in           <= 1;
-  y_in           <= 1;
+	window_in      <= (others => rows);
+	template       <= (others => rows0);
+	x_in           <= 1;
+	y_in           <= 1;
   
-    wait until reset_n = '0'; -- reset
+    wait until reset_n = '1'; -- reset
     wait for clockperiod; -- one clock periode idle before start 
 	wait until clk_50MHz = '1'; -- Align clock
-   
-	valid_in <= '1';
-  
-	wait for clockperiod;
-	wait for clockperiod;
-	wait for clockperiod;
-	wait for clockperiod;
-		
-	assert (score_out = 0)
-	report "score_out = 0"
+
+    valid_in <= '1';
+  	
+	wait until valid_out = '1';
+	
+	output_sc := to_integer(score_out);
+	
+	assert ( output_sc /= 0)
+	report "score_out = " & integer'image(output_sc)
 	severity error;
 	
   end process StimuliProcess;
   
   
   
-  
-  
-  
-  
-  
---  monitorProcess : process
---  begin
-
---  end process monitorProcess;
+--  MonitorProcess : process
+--	begin
+		
+		
+--  end process
   
   
   
