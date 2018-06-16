@@ -25,9 +25,10 @@ PORT (
   template             :IN    Window_t;
   
   -- inputs from window buffer
-  window_in            :IN    Window_t;
-  x_in                 :IN    X_t;
-  y_in                 :IN    Y_t;
+  window_info       :IN     WindowInfo_t; 
+  --window_in            :IN    Window_t;
+  --x_in                 :IN    X_t;
+  --y_in                 :IN    Y_t;
   valid_in             :IN    STD_LOGIC;
   
   -- Outputs
@@ -44,12 +45,13 @@ ARCHITECTURE structural OF SAD IS
   type sad_state_types is (idle, das, output); -- define states 	
   signal current_state : sad_state_types;  -- create instance of state_types
   signal temp_score : unsigned(17 downto 0) := (others => '0');
+  signal window_in  : Window_t := Window_t_init; 
  -- signal debug_signal : unsigned(7 downto 0);
 BEGIN
 
 	-- conbinatorial output of (x,y) coordinates
-	x_out <= x_in;
-	y_out <= y_in;
+	x_out <= window_info.x;
+	y_out <= window_info.y;
   -- architecture body...
 	SAD_process : process (clk_50MHz, reset_n) 
 		variable score_var : unsigned(17 downto 0) := (others => '0');
@@ -65,6 +67,7 @@ BEGIN
 				when idle =>
 					if valid_in = '1' then
 						valid_out <= '0';
+						window_in <= window_info.window;
 						current_state <= das; 
 					end if; 			
 				when das =>
