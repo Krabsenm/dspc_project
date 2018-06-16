@@ -1,0 +1,31 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.math_real.all;
+use work.TemplateMatchingTypePckg.all;
+--library unisim;
+--use unisim.vcomponents.all;
+
+entity pixel_buffer is
+  --generic (
+    -- Generics go here...
+  --);
+  port (
+    -- inputs
+    clk               :in    std_logic;
+    reset             :in    std_logic;
+
+    in_data           :in    std_logic_vector( 7 DOWNTO  0);  
+    in_startofpacket  :in    std_logic;
+    in_endofpacket    :in    std_logic;
+    in_valid          :in    std_logic;
+
+    -- Bidirectional
+
+    -- Outputs
+    in_ready          :buffer  std_logic;
+
+    valid             :buffer  std_logic;
+    out_data          :buffer  Pixel_t;
+  );
+end entity;
