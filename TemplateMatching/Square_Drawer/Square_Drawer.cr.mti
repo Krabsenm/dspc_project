@@ -1,1 +1,46 @@
+E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer_tb.vhd {1 {vcom -work work -2002 -explicit -stats=none E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer_tb.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package TemplateMatchingTypePckg
+-- Loading package io_utils
+-- Compiling entity square_drawer_tb
+-- Compiling architecture Bhv of square_drawer_tb
+-- Loading entity square_drawer
 
+} {} {}} E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/TemplateMatchingTypePckg.vhd {1 {vcom -work work -2002 -explicit -stats=none E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/TemplateMatchingTypePckg.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Compiling package TemplateMatchingTypePckg
+
+} {} {}} E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/io_utils.vhd {2 {vcom -work work -2002 -explicit -stats=none E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/io_utils.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Compiling package io_utils
+-- Compiling package body io_utils
+-- Loading package io_utils
+-- Compiling entity test
+-- Loading package io_utils
+-- Compiling architecture hex_test of test
+** Warning: E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/io_utils.vhd(248): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+
+} {} {}} E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer.vhd {1 {vcom -work work -2002 -explicit -stats=none E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package TemplateMatchingTypePckg
+-- Compiling entity square_drawer
+-- Compiling architecture arch of square_drawer
+
+} {} {}}

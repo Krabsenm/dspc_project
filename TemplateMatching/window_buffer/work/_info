@@ -21,9 +21,9 @@ V>[0j93z75z:8XZ]2=YZgh1
 Z5 OV;C;10.5b;63
 32
 b1
-Z6 !s110 1529230101
+Z6 !s110 1529237861
 !i10b 1
-Z7 !s108 1529230101.000000
+Z7 !s108 1529237861.000000
 Z8 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/io_utils.vhd|
 Z9 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/io_utils.vhd|
 !i113 1
@@ -63,7 +63,7 @@ R5
 32
 R6
 !i10b 1
-Z18 !s108 1529230100.000000
+R7
 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/TemplateMatchingTypePckg.vhd|
 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/TemplateMatchingTypePckg.vhd|
 !i113 1
@@ -89,13 +89,13 @@ R9
 R10
 R11
 Ahex_test
-Z19 DEx4 work 4 test 0 22 24Z]RAB]i?QLoAkX7^ZBf1
+Z18 DEx4 work 4 test 0 22 24Z]RAB]i?QLoAkX7^ZBf1
 R12
 R0
 l245
 L244
-Z20 V:Y[ZDk6oJY?h7cQ@_4eoG1
-Z21 !s100 azBGYL6PhJ`:QGLMc6;4J2
+Z19 V:Y[ZDk6oJY?h7cQ@_4eoG1
+Z20 !s100 azBGYL6PhJ`:QGLMc6;4J2
 R5
 32
 R6
@@ -107,15 +107,15 @@ R9
 R10
 R11
 Ewindow_buffer
-Z22 w1529229134
-Z23 DPx4 work 24 templatematchingtypepckg 0 22 KN^H@6c?^452^JR84dO0A2
+Z21 w1529237280
+Z22 DPx4 work 24 templatematchingtypepckg 0 22 KN^H@6c?^452^JR84dO0A2
 R15
 R16
 R0
 R17
 R2
-Z24 8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-Z25 FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
+Z23 8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
+Z24 FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
 l0
 L9
 V]>J0`dnk55J5YnCbOOBjB2
@@ -125,61 +125,61 @@ R5
 R6
 !i10b 1
 R7
-Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
-Z27 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
+Z26 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
 !i113 1
 R10
 R11
 Aarch
-R23
+R22
 R15
 R16
 R0
 R17
-Z28 DEx4 work 13 window_buffer 0 22 ]>J0`dnk55J5YnCbOOBjB2
+Z27 DEx4 work 13 window_buffer 0 22 ]>J0`dnk55J5YnCbOOBjB2
 l35
 L27
-VH46@on1VXSmnI3^old5fM3
-!s100 <k`@jYj_;cZVS?4fRaNjQ1
+V@Oe@HX4>W?m=NFGWzQ;3C3
+!s100 626jEJOSmC?Hh0ohWiDEK2
 R5
 32
 R6
 !i10b 1
 R7
+R25
 R26
-R27
 !i113 1
 R10
 R11
 Ewindow_buffer_tb
-Z29 w1529230096
+Z28 w1529230096
 R12
-R23
+R22
 R15
 R16
 R0
 R17
 R2
-Z30 8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
-Z31 FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
+Z29 8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
+Z30 FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
 l0
 L12
 V[2>4Z[>2`Mfj=z@HV5Jc_1
 !s100 D3nzFMhc6Hch1JbceS[>R1
 R5
 32
-Z32 !s110 1529230100
+R6
 !i10b 1
-R18
-Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
-Z34 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
+R7
+Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
+Z32 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
 !i113 1
 R10
 R11
 Aarch
-R28
+R27
 R12
-R23
+R22
 R15
 R16
 R0
@@ -191,11 +191,11 @@ V1lEoQA7LE`TVM`3g<E]O62
 !s100 zfCR8:bPkIbGoLXQjA>C[2
 R5
 32
-R32
+R6
 !i10b 1
-R18
-R33
-R34
+R7
+R31
+R32
 !i113 1
 R10
 R11

@@ -23,8 +23,8 @@ package TemplateMatchingTypePckg is
   type Window_t    is array(0 to TEMPLATE_SIZE-1) of WindowRow_t;
   
   subtype Score_t  is unsigned(17 downto 0); -- integer range 0 to SCORE_MAX;
-  subtype X_t      is integer range 0 to IMAGE_WIDTH-1;
-  subtype Y_t      is integer range 0 to IMAGE_HEIGHT-1;
+  subtype X_t      is integer range 0 to IMAGE_WIDTH;
+  subtype Y_t      is integer range 0 to IMAGE_HEIGHT;
   
   type WindowInfo_t is record
     window : Window_t;

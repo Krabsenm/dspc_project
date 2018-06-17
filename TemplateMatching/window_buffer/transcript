@@ -172,3 +172,15 @@ run -all
 # ** Note: Done writing output file
 #    Time: 867365 ns  Iteration: 1  Instance: /window_buffer_tb
 run
+# Compile of window_buffer_tb.vhd was successful.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# Compile of window_buffer.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+# Compile of window_buffer_tb.vhd was successful.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# Compile of window_buffer.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+# End time: 14:17:55 on Jun 17,2018, Elapsed time: 2:09:17
+# Errors: 0, Warnings: 0

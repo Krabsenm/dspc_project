@@ -8,3 +8,242 @@ z2
 !i10f 100
 cModel Technology
 dE:/Programmer/intelFPGA
+Pio_utils
+Z0 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z1 w1529223648
+Z2 dE:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer
+Z3 8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/io_utils.vhd
+Z4 FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/io_utils.vhd
+l0
+L11
+V>[0j93z75z:8XZ]2=YZgh1
+!s100 Z6;BH6@DoYHId?Qc0O<kd2
+Z5 OV;C;10.5b;63
+32
+b1
+Z6 !s110 1529245770
+!i10b 1
+Z7 !s108 1529245770.000000
+Z8 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/io_utils.vhd|
+Z9 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/io_utils.vhd|
+!i113 1
+Z10 o-work work -2002 -explicit
+Z11 tExplicit 1 CvgOpt 0
+Bbody
+Z12 DPx4 work 8 io_utils 0 22 >[0j93z75z:8XZ]2=YZgh1
+R0
+l0
+L42
+V>W@2C1gB@9]iAQL0:ajbT0
+!s100 eDHB5K3Rmah=nTURXn]od0
+R5
+32
+R6
+!i10b 1
+R7
+R8
+R9
+!i113 1
+R10
+R11
+Esquare_drawer
+Z13 w1529245682
+Z14 DPx4 work 24 templatematchingtypepckg 0 22 kZ6NE4OSoo82EoB?dZE5O0
+Z15 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+Z16 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+R0
+Z17 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+R2
+Z18 8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer.vhd
+Z19 FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer.vhd
+l0
+L9
+V`;oc:dP4?X?ggk>Yz7ZA41
+!s100 4cPaZ@_mzFn_F;mSf30oi0
+R5
+32
+Z20 !s110 1529245769
+!i10b 1
+Z21 !s108 1529245769.000000
+Z22 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer.vhd|
+Z23 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer.vhd|
+!i113 1
+R10
+R11
+Aarch
+R14
+R15
+R16
+R0
+R17
+Z24 DEx4 work 13 square_drawer 0 22 `;oc:dP4?X?ggk>Yz7ZA41
+l47
+L38
+VQ:I]6V?fnd2SfnRh;l7HQ3
+!s100 i@eImBnm[EDN]Vg8VB?gT1
+R5
+32
+R20
+!i10b 1
+R21
+R22
+R23
+!i113 1
+R10
+R11
+Esquare_drawer_tb
+Z25 w1529245766
+R12
+R14
+R15
+R16
+R0
+R17
+R2
+Z26 8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer_tb.vhd
+Z27 FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer_tb.vhd
+l0
+L12
+VSOaWP3OgTWik_BD=P^n>a3
+!s100 T2^l3l_d1Wo=e=iW3YzkQ1
+R5
+32
+R20
+!i10b 1
+R21
+Z28 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer_tb.vhd|
+Z29 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/Square_Drawer_tb.vhd|
+!i113 1
+R10
+R11
+Abhv
+R24
+R12
+R14
+R15
+R16
+R0
+R17
+DEx4 work 16 square_drawer_tb 0 22 SOaWP3OgTWik_BD=P^n>a3
+l45
+L22
+VN45lPfJGg:eF8WN66d9OF1
+!s100 iGCS@D>MdPfQZ8B3X`5P@3
+R5
+32
+R20
+!i10b 1
+R21
+R28
+R29
+!i113 1
+R10
+R11
+Etb_square_drawer
+Z30 w1529239370
+R12
+Z31 DPx4 work 24 templatematchingtypepckg 0 22 2KT;>LkQX7bcZDbNBDWTM3
+R15
+R16
+R0
+R17
+R2
+R26
+R27
+l0
+L12
+V_S3NFc2l<WRg@kIP0jEV<2
+!s100 DcmG5N]HFYd>KzI];]V_i2
+R5
+32
+Z32 !s110 1529239479
+!i10b 1
+Z33 !s108 1529239479.000000
+R28
+R29
+!i113 1
+R10
+R11
+Abhv
+R24
+R12
+R31
+R15
+R16
+R0
+R17
+DEx4 work 16 tb_square_drawer 0 22 _S3NFc2l<WRg@kIP0jEV<2
+l45
+L22
+Vd;Zg=Re1Mggmi^<Nf=JAz2
+!s100 SaYZ49RC2FW_mE^`QDj<e0
+R5
+32
+R32
+!i10b 1
+R33
+R28
+R29
+!i113 1
+R10
+R11
+Ptemplatematchingtypepckg
+R15
+R16
+R0
+R17
+w1529242934
+R2
+8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/TemplateMatchingTypePckg.vhd
+FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/TemplateMatchingTypePckg.vhd
+l0
+L8
+VkZ6NE4OSoo82EoB?dZE5O0
+!s100 QQJfcT0LSW598P<n:L?fc0
+R5
+32
+R6
+!i10b 1
+R7
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/TemplateMatchingTypePckg.vhd|
+!s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/Square_Drawer/TemplateMatchingTypePckg.vhd|
+!i113 1
+R10
+R11
+Etest
+R1
+R2
+R3
+R4
+l0
+L240
+V24Z]RAB]i?QLoAkX7^ZBf1
+!s100 4YZ5hiXM;VB0zeAMJKOf82
+R5
+32
+R6
+!i10b 1
+R7
+R8
+R9
+!i113 1
+R10
+R11
+Ahex_test
+DEx4 work 4 test 0 22 24Z]RAB]i?QLoAkX7^ZBf1
+R12
+R0
+l245
+L244
+V:Y[ZDk6oJY?h7cQ@_4eoG1
+!s100 azBGYL6PhJ`:QGLMc6;4J2
+R5
+32
+R6
+!i10b 1
+R7
+R8
+R9
+!i113 1
+R10
+R11
