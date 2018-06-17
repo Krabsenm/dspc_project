@@ -128,7 +128,9 @@ begin  -- architecture Bhv
   end process;
 
   
-  -- Monitor process
+  -------------------------------------------------------
+  -- Monitor Process
+  -------------------------------------------------------
   monitor : process
     variable line: LINE;
     variable data: integer;

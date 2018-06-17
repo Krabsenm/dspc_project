@@ -25,7 +25,31 @@ entity pixel_buffer is
     -- Outputs
     in_ready          :buffer  std_logic;
 
-    valid             :buffer  std_logic;
-    out_data          :buffer  Pixel_t;
+    out_valid         :buffer  std_logic;
+    out_data          :buffer  Pixel_t
   );
 end entity;
+
+architecture arch of pixel_buffer is
+  -- declare signals, components here...
+begin
+  in_ready <= '1'; -- always accept input
+  
+  buffer_l: process (clk)
+  begin
+    if rising_edge(clk) then
+      if reset = '1' then
+        out_valid <= '0';
+        out_data <= (others => '0');
+
+      else
+        if (in_ready = '1') then
+          out_data <= in_data;
+          out_valid <= in_valid;
+        end if;
+      end if;
+    end if;
+  end process;
+  
+  -- architecture body...
+end architecture;

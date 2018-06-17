@@ -7,29 +7,74 @@ use work.TemplateMatchingTypePckg.all;
 --use unisim.vcomponents.all;
 
 entity window_buffer is
-  generic (
-    -- Generics go here...
-  );
   port (
-    -- Inputs
-    clk               :IN    STD_LOGIC;
-    reset             :IN    STD_LOGIC;
+    -- inputs
+    clk               : in    std_logic;
+    reset             : in    std_logic;
 
-    in_data           :IN    STD_LOGIC_VECTOR( 7 DOWNTO  0);  
-    in_startofpacket  :IN    STD_LOGIC;
-    in_endofpacket    :IN    STD_LOGIC;
-    in_valid          :IN    STD_LOGIC;
-
-    out_ready         :IN    STD_LOGIC;
+    in_data           : in    ImageRow_t;
+    in_valid          : in    std_logic;
+    in_begin          : in    std_logic;
 
     -- Bidirectional
 
     -- Outputs
-    in_ready          :BUFFER  STD_LOGIC;
-
-    out_data          :BUFFER  STD_LOGIC_VECTOR( 7 DOWNTO  0);  
-    out_startofpacket :BUFFER  STD_LOGIC;
-    out_endofpacket   :BUFFER  STD_LOGIC;
-    out_valid         :BUFFER  STD_LOGIC
+    out_data          : buffer window_buffer_data_output_t;
+    out_valid         : buffer std_logic
   );
 end entity;
+
+architecture arch of window_buffer is
+  -- declare signals, components here...
+  type Row_collector_t is array(0 to TEMPLATE_SIZE - 1) of ImageRow_t;
+  signal row_collector : Row_collector_t;
+begin
+
+  window_buffer: process (clk)
+    variable row_counter  : integer range 0 to TEMPLATE_SIZE;
+    variable x_counter    : integer range 0 to IMAGE_WIDTH - TEMPLATE_SIZE - 1;
+    variable y_counter    : integer range 0 to IMAGE_HEIGHT - TEMPLATE_SIZE - 1;
+    variable temp_row     : ImageRow_t;
+  -- variables yo
+  begin
+    if rising_edge(clk) then
+      if reset = '1' then
+        row_counter := 0;
+        x_counter   := 0;
+        y_counter   := 0;
+       -- do stuff
+       
+      elsif in_valid = '1' then
+      
+        if in_begin = '1' then
+          row_counter := 0;
+          x_counter   := 0;
+          y_counter   := 0;  
+        end if;
+      
+        if row_counter < TEMPLATE_SIZE then
+          row_collector(row_counter) <= in_data;
+          row_counter := row_counter + 1;
+        
+        else
+          for shift_var in 0 to TEMPLATE_SIZE - 2 loop
+            row_collector(shift_var) <= row_collector(shift_var + 1);
+          end loop;
+          
+          row_collector(TEMPLATE_SIZE - 1) <= in_data;
+        end if; 
+      end if;
+      
+      if row_counter = TEMPLATE_SIZE AND (y_counter + x_counter) < IMAGE_HEIGHT + IMAGE_WIDTH - 2*TEMPLATE_SIZE - 2 then   
+        for window_var in 0 to NUM_SAD - 1 loop
+          for windowRow_var in 0 to TEMPLATE_SIZE - 1 loop
+            temp_row := row_collector(windowRow_var);
+            out_data(window_var).window(windowRow_var) <= WindowRow_t(temp_row(x_counter to (x_counter + TEMPLATE_SIZE - 1)));
+          end loop;
+        end loop;
+      end if;
+      
+      
+    end if;
+  end process;  
+end architecture;
