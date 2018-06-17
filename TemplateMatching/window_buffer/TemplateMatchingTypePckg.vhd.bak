@@ -25,10 +25,10 @@ package TemplateMatchingTypePckg is
   subtype Y_t      is integer range 0 to IMAGE_HEIGHT-1;
   
   type WindowInfo_t is record
-    window : Window_t;
-    x      : X_t;
-    y      : Y_t;
-  end record;
+    signal window : Window_t;
+    signal x      : X_t;
+    signal y      : Y_t;
+  end type;
   
   type window_buffer_data_output_t is array(0 to NUM_SAD) of WindowInfo_t;
   

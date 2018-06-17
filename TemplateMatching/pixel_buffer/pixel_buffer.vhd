@@ -44,7 +44,7 @@ begin
 
       else
         if (in_ready = '1') then
-          out_data <= in_data;
+          out_data <= unsigned(in_data);
           out_valid <= in_valid;
         end if;
       end if;

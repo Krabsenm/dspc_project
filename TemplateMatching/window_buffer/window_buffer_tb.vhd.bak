@@ -159,9 +159,7 @@ begin  -- architecture
     end loop;
     
     
-    file_close(videooutfile0);  
-    file_close(videooutfile1);  
-    file_close(videooutfile2);  
+    file_close(videooutfile);  
     report "Done writing output file";
     
     end_sim <= '1';

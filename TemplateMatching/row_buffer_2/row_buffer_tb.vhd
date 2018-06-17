@@ -7,45 +7,40 @@ use work.TemplateMatchingTypePckg.all;
 use work.io_utils.all;
 
 --------------------------------------------------------------------------------
-entity  pixel_buffer_tb is
-    GENERIC (
-    image_width :INTEGER    := 3;   -- Image width in pixels
-    image_height:INTEGER    := 3;   -- Image height in pixels
+entity  row_buffer_tb is
+  GENERIC (
+    image_width :INTEGER    := IMAGE_WIDTH;   -- Image width in pixels
+    image_height:INTEGER    := 2;  -- Image height in pixels
     image_name: string      := "ImageIn.txt"; -- Contains image as text hex input format
     image_outName: string   := "ImageOut.txt"
-    );
+  );
 end entity ;
 --------------------------------------------------------------------------------
 
-
-architecture Bhv of pixel_buffer_tb is
+architecture Bhv of row_buffer_tb is
   -----------------------------
   -- Port Signals 
   -----------------------------
   signal   clk              : std_logic := '0';
-  signal   reset            : std_logic;
-
-  -- input
+  signal   reset            : std_logic := '1';
   signal   in_data          : std_logic_vector( 7 DOWNTO  0);
   signal   in_startofpacket : std_logic;
   signal   in_endofpacket   : std_logic;
   signal   in_valid         : std_logic;
+  signal   out_valid        : std_logic;
+  signal   out_data         : ImageRow_t;
+  signal   out_begin        : std_logic;
 
-  -- output
-  signal   in_ready         : std_logic;
-  signal   out_valid            : std_logic;
-  signal   out_data         : Pixel_t;
-
-  -- clock
+    -- clock
   signal end_sim : std_logic := '0';
   constant clockperiod  : time := 10 ns;  -- clk period time
-
+  
 begin  -- architecture Bhv
 
   -----------------------------
   -- component instantiation 
   -----------------------------
-  pixel_buffer_INST: entity work.pixel_buffer
+  row_buffer_INST: entity work.row_buffer
    port map (
       clk              => clk,
       reset            => reset,
@@ -53,22 +48,21 @@ begin  -- architecture Bhv
       in_startofpacket => in_startofpacket,
       in_endofpacket   => in_endofpacket,
       in_valid         => in_valid,
-      in_ready         => in_ready,
       out_valid        => out_valid,
-      out_data         => out_data);
+      out_data         => out_data,
+      out_begin        => out_begin);
 
-  
-  -- clock generation
+	-- clock generation
   clk <= not clk after clockperiod/2 when end_sim = '0' else unaffected; 
 
   -- reset generation
   reset <= '1', '0' after 125 ns;
   
-    -----------------------------------------------------------------------------
+  --------------------------------------------------------
   -- Stimulus Process
   -- It creates a stream of video data to the ST bus
-  -----------------------------------------------------------------------------
-  genVideoSTData : process
+  ---------------------------------------------------------
+  StimuliProcess : process
     variable pixelcount : integer range 0 to image_width;
     variable linecount  : integer range 0 to image_height;
      -- files
@@ -126,41 +120,44 @@ begin  -- architecture Bhv
       
     wait;
   end process;
-
   
   -------------------------------------------------------
   -- Monitor Process
   -------------------------------------------------------
-  monitor : process
-    variable line: LINE;
-    variable data: integer;
-    file videooutfile: TEXT open write_mode is image_outName;
+  MonitorProcess : process
   begin
-    -- Create simulation files    
-    --file_open(videooutfile, image_outName);
-    
     wait until reset = '0';
+    wait for clockperiod;
+    wait until clk = '1';
+    
     wait until out_valid = '1';
     
-    while (out_valid = '1' ) loop
-      wait until clk = '0';
-      data := TO_INTEGER(unsigned(out_data));
-      write(line, data, right, 0, decimal); -- convert to decimal numbers
-      
-      -- Frame pixels stored in file
-      writeline(videooutfile, line); -- write next text line to file
-      report "Writing to file: " & integer'image(data);
-      wait until clk = '1';
-      
-      wait for 1 ns;
-    end loop;
-    file_close(videooutfile);  
-    report "Done writing output file";
+    assert out_begin = '1'
+      report "out_begin not 1"
+      severity error;
     
+    for i in 0 to image_width-1 loop
+      if (i <= 255) then
+        assert to_integer(out_data(i)) = i
+        report "out_data(" & integer'image(i) & ") got: " & integer'image(to_integer(out_data(i))) & " expected: " & integer'image(i)
+        severity error;
+      else
+        assert to_integer(out_data(i)) = i-256
+        report "out_data(" & integer'image(i) & ") got: " & integer'image(to_integer(out_data(i))) & " expected: " & integer'image(i-255)
+        severity error;
+      end if;
+    end loop;
+    
+    
+    wait until out_valid = '0';
+    wait until out_valid = '1';
+    
+    assert out_begin = '0'
+      report "out_begin not 0 on second row"
+      severity error;
+    
+  
     end_sim <= '1';
-    wait;
-  end process;
+  end process MonitorProcess;
   
-  
-  
-end architecture;
+end architecture Bhv;

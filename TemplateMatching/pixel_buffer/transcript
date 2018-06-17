@@ -1,0 +1,81 @@
+# Reading C:/intelFPGA/17.1/modelsim_ase/tcl/vsim/pref.tcl
+# OpenFile C:/Users/jonas/source/repos/dspc_project/TemplateMatching/pixel_buffer/pixel_buffer.mpf
+# Loading project pixel_buffer
+# Compile of pixel_buffer.vhd was successful.
+# Compile of pixel_buffer_tb.vhd was successful.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+# Compile of pixel_buffer.vhd failed with 2 errors.
+# Compile of pixel_buffer_tb.vhd was successful.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of pixel_buffer.vhd failed with 2 errors.
+# Compile of pixel_buffer_tb.vhd was successful.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of pixel_buffer.vhd failed with 2 errors.
+# Compile of pixel_buffer_tb.vhd was successful.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of pixel_buffer.vhd failed with 2 errors.
+# Compile of pixel_buffer_tb.vhd was successful.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of pixel_buffer.vhd was successful.
+# Compile of pixel_buffer_tb.vhd was successful.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+# Compile of pixel_buffer.vhd was successful.
+# Compile of pixel_buffer_tb.vhd was successful.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# 4 compiles, 0 failed with no errors.
+vsim -gui work.pixel_buffer_tb
+# vsim -gui work.pixel_buffer_tb 
+# Start time: 08:45:43 on Jun 16,2018
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.math_real(body)
+# Loading work.templatematchingtypepckg
+# Loading work.io_utils(body)
+# Loading work.pixel_buffer_tb(bhv)
+# Loading work.pixel_buffer(arch)
+add wave -position insertpoint sim:/pixel_buffer_tb/*
+run
+# ** Note: Reading file
+#    Time: 145 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# ** Note: Starting to read file
+#    Time: 145 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# ** Note: Writing to file: 155
+#    Time: 160 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# ** Note: Writing to file: 26
+#    Time: 170 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# ** Note: Writing to file: 94
+#    Time: 180 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# ** Note: Writing to file: 98
+#    Time: 190 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# ** Note: Writing to file: 167
+#    Time: 200 ns  Iteration: 0  Instance: /pixel_buffer_tb
+run
+# ** Note: Writing to file: 20
+#    Time: 210 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# ** Note: Writing to file: 37
+#    Time: 220 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# ** Note: Writing to file: 56
+#    Time: 230 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# ** Note: Writing to file: 11
+#    Time: 240 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# ** Note: Done writing output file
+#    Time: 246 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# ** Note: Done reading file
+#    Time: 265 ns  Iteration: 0  Instance: /pixel_buffer_tb
+# End time: 08:46:26 on Jun 16,2018, Elapsed time: 0:00:43
+# Errors: 0, Warnings: 0
