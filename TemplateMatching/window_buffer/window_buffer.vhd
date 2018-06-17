@@ -99,7 +99,7 @@ begin
             end if;
           
           when others =>
-            report "window_buffer_states has illegal value"
+            report "window_buffer_states has illegal value";
             
         end case;
       end if;
