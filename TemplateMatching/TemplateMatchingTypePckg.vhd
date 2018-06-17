@@ -32,6 +32,17 @@ package TemplateMatchingTypePckg is
     y      : Y_t;
   end record;
 
+  subtype PixelC_t  is unsigned(PIXEL_SIZE downto 0);
+  type WindowRowC_t is array(0 to TEMPLATE_SIZE-1) of PixelC_t;
+  type WindowC_t    is array(0 to TEMPLATE_SIZE-1) of WindowRowC_t;
+
+  type WindowInfoC_t is record
+    window : WindowC_t;
+    x      : X_t;
+    y      : Y_t;
+  end record;
+
+  
   type window_buffer_data_output_t is array(0 to NUM_SAD) of WindowInfo_t;
   
   -- Reset types to all '0' constanst
