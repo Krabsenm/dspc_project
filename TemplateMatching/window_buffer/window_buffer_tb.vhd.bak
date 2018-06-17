@@ -12,7 +12,7 @@ use work.io_utils.all;
 entity  window_buffer_tb is
   GENERIC (
     image_width :INTEGER    := IMAGE_WIDTH;   -- Image width in pixels
-    image_height:INTEGER    := 32;            -- Image height in pixels
+    image_height:INTEGER    := IMAGE_HEIGHT;            -- Image height in pixels
     image_name: string      := "ImageIn.txt" -- Contains image as text hex input format
   );
 end entity ;
@@ -30,6 +30,9 @@ architecture arch of window_buffer_tb is
   signal   in_begin  : std_logic := '0';
   signal   out_data  : window_buffer_data_output_t;
   signal   out_valid : std_logic;
+  signal   out_data_0: WindowInfo_t;
+  signal   out_data_1: WindowInfo_t;
+  signal   out_data_2: WindowInfo_t;
   
       -- clock
   signal end_sim : std_logic := '0';
@@ -56,6 +59,10 @@ begin  -- architecture
   -- reset generation
   reset <= '1', '0' after 125 ns;
 	
+  out_data_0 <= out_data(0);
+  out_data_1 <= out_data(1);
+  out_data_2 <= out_data(2);
+  
   
   -----------------------------
   -- Stimuli Process
@@ -82,7 +89,7 @@ begin  -- architecture
     while not endfile(videoinfile) loop
   
       report "Starting to read file";  
-
+      for image in 0 to 1 loop 
       for linecount in 0 to image_height-1 loop
         for pixelcount in 0 to image_width-1 loop
           if not endfile(videoinfile) then
@@ -105,9 +112,15 @@ begin  -- architecture
         
         in_valid <= '0';
         
+        for i in 0 to IMAGE_WIDTH -2 loop
+          wait until clk = '0';
+          wait until clk = '1'; --for clockperiod;
+        end loop;
+        
       end loop; -- columns
     end loop; -- reading video file
-
+    end loop; -- image loop
+    
     report "Done reading file"; 
     file_close(videoinfile);     
       
@@ -129,7 +142,11 @@ begin  -- architecture
     --file_open(videooutfile, image_outName);
     
     wait until reset = '0';
+    wait until out_begin = '1';
+    wait until out_begin = '0';
+    wait until out_begin = '1';
     wait until out_valid = '1';
+    
     
     for win in 0 to NUM_SAD - 1 loop
       assert out_data(win).x = win AND out_data(win).y = 0
@@ -159,9 +176,13 @@ begin  -- architecture
     end loop;
     
     
-    file_close(videooutfile);  
+    file_close(videooutfile0);  
+    file_close(videooutfile1);  
+    file_close(videooutfile2);  
     report "Done writing output file";
     
+    wait until out_valid = '0';
+    wait for 1 us;
     end_sim <= '1';
     wait;
   end process;

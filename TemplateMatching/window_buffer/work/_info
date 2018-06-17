@@ -10,7 +10,7 @@ cModel Technology
 dC:/Users/jonas/OneDrive/Uni/6_Semester/DSPC/Examproject/soc_system_template_matching_de10lite/TemplateMatching
 Pio_utils
 Z0 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
-Z1 w1529052772
+Z1 w1529223648
 Z2 dE:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer
 Z3 8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/io_utils.vhd
 Z4 FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/io_utils.vhd
@@ -21,9 +21,9 @@ V>[0j93z75z:8XZ]2=YZgh1
 Z5 OV;C;10.5b;63
 32
 b1
-Z6 !s110 1529223256
+Z6 !s110 1529230101
 !i10b 1
-Z7 !s108 1529223256.000000
+Z7 !s108 1529230101.000000
 Z8 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/io_utils.vhd|
 Z9 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/io_utils.vhd|
 !i113 1
@@ -51,7 +51,7 @@ Z15 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
 Z16 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 R0
 Z17 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-Z18 w1529219588
+w1529219588
 R2
 8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/TemplateMatchingTypePckg.vhd
 FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/TemplateMatchingTypePckg.vhd
@@ -63,7 +63,7 @@ R5
 32
 R6
 !i10b 1
-R7
+Z18 !s108 1529230100.000000
 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/TemplateMatchingTypePckg.vhd|
 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/TemplateMatchingTypePckg.vhd|
 !i113 1
@@ -107,7 +107,7 @@ R9
 R10
 R11
 Ewindow_buffer
-Z22 w1529223237
+Z22 w1529229134
 Z23 DPx4 work 24 templatematchingtypepckg 0 22 KN^H@6c?^452^JR84dO0A2
 R15
 R16
@@ -139,8 +139,8 @@ R17
 Z28 DEx4 work 13 window_buffer 0 22 ]>J0`dnk55J5YnCbOOBjB2
 l35
 L27
-V3FPa5<10[m`TUiB_W[bkP3
-!s100 W_c;9RklIk4=Ye3ld93XF2
+VH46@on1VXSmnI3^old5fM3
+!s100 <k`@jYj_;cZVS?4fRaNjQ1
 R5
 32
 R6
@@ -152,7 +152,7 @@ R27
 R10
 R11
 Ewindow_buffer_tb
-R18
+Z29 w1529230096
 R12
 R23
 R15
@@ -160,19 +160,19 @@ R16
 R0
 R17
 R2
-Z29 8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
-Z30 FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
+Z30 8E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
+Z31 FE:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
 l0
 L12
-VOMJ4>FB=WcPIecS4Z@aH71
-!s100 bkUkf2i@fOI=53E73U08>1
+V[2>4Z[>2`Mfj=z@HV5Jc_1
+!s100 D3nzFMhc6Hch1JbceS[>R1
 R5
 32
-R6
+Z32 !s110 1529230100
 !i10b 1
-R7
-Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
-Z32 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
+R18
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
+Z34 !s107 E:/Skole_ting/DSPC/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
 !i113 1
 R10
 R11
@@ -184,18 +184,18 @@ R15
 R16
 R0
 R17
-DEx4 work 16 window_buffer_tb 0 22 OMJ4>FB=WcPIecS4Z@aH71
-l38
+DEx4 work 16 window_buffer_tb 0 22 [2>4Z[>2`Mfj=z@HV5Jc_1
+l41
 L22
-VE`1o4OHSQ6YfIjo@ZRmR<1
-!s100 JG?2kh<6QZ9LIHP]1<da82
+V1lEoQA7LE`TVM`3g<E]O62
+!s100 zfCR8:bPkIbGoLXQjA>C[2
 R5
 32
-R6
-!i10b 1
-R7
-R31
 R32
+!i10b 1
+R18
+R33
+R34
 !i113 1
 R10
 R11

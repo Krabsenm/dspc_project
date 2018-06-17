@@ -36,8 +36,8 @@ begin
 
   window_buffer: process (clk)
     variable row_counter  : integer range 0 to TEMPLATE_SIZE;
-    variable x_counter    : integer range 0 to IMAGE_WIDTH - TEMPLATE_SIZE - 1;
-    variable y_counter    : integer range 0 to IMAGE_HEIGHT - TEMPLATE_SIZE - 1;
+    variable x_counter    : integer range 0 to IMAGE_WIDTH - TEMPLATE_SIZE;
+    variable y_counter    : integer range 0 to IMAGE_HEIGHT - TEMPLATE_SIZE;
     variable temp_row     : ImageRow_t;
   -- variables yo
   
@@ -52,6 +52,9 @@ begin
       else
         case window_buffer_states is
           when load_line =>
+          
+          out_valid <= '0';
+          
             if in_valid = '1' then
               if in_begin = '1' then
                 row_counter := 0;
@@ -85,17 +88,17 @@ begin
             for window_var in 0 to NUM_SAD - 1 loop
               for windowRow_var in 0 to TEMPLATE_SIZE - 1 loop
                 temp_row := row_collector(windowRow_var);
-                out_data(window_var).window(windowRow_var) <= WindowRow_t(temp_row(x_counter to (x_counter + TEMPLATE_SIZE - 1)));
+                out_data(window_var).window(windowRow_var) <= WindowRow_t(temp_row(x_counter + window_var to (x_counter + window_var + TEMPLATE_SIZE - 1)));
               end loop;
               out_data(window_var).x <= x_counter + window_var;
               out_data(window_var).y <= y_counter;
             end loop;
-        
+            
+            
             x_counter := x_counter + NUM_SAD;
           
-            if (x_counter = IMAGE_WIDTH - TEMPLATE_SIZE - 1) then
+            if (x_counter = IMAGE_WIDTH - TEMPLATE_SIZE) then
               window_buffer_states <= load_line;
-              out_valid <= '0';
             end if;
           
           when others =>
