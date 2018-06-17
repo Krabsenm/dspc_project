@@ -91,7 +91,7 @@ begin  -- architecture Bhv
       --y_in                 => y_in,
       valid_in             => valid_in_tb,
       -- Outputs  
-      valid_out             => valid_out_tb,
+      valid_out_comp             => valid_out_tb,
 	  window_out            => window_out_tb); 
   -----------------------------
   -- stimuli process 

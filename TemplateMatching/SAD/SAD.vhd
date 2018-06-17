@@ -42,46 +42,49 @@ end entity;
 
 ARCHITECTURE structural OF SAD IS
 
+
+-- from complement_sum to adder_tree
+signal comp_sum_out : WindowInfoC_t := WindowInfoC_t_init; 
+signal comp_sum_valid_out : std_logic := '0'; 
+
+
 BEGIN
 
-
-  comp_sum: entity work.complement_sum
+ -----------------------------
+  -- component instantiation 
+  -----------------------------
+  complement_sum_INST: entity work.complement_sum
    port map (
 	  -- Inputs
       clk_50MHz            => clk_50MHz,
-      reset                => reset_tb,
+      reset              => reset_n,
       -- inputs from softcore 
-      template             => template_tb,
+      template             => template,
       -- inputs from window buffer
-	  window_in          => window_in_tb,   
+	  window_in          => window_info,   
      -- window_in            => window_in,
       --x_in                 => x_in,
       --y_in                 => y_in,
-      valid_in             => valid_in_tb,
+      valid_in             => valid_in,
       -- Outputs  
-      valid_out             => valid_out_tb,
-	  window_out            => window_out_tb); 
+      valid_out_comp        => comp_sum_valid_out,
+	  window_out            => comp_sum_out); 
  
  
+  -----------------------------
+  -- component instantiation 
+  -----------------------------
+  adder_tree_INST: entity work.adder_tree
+   port map (
+		clk_50MHz    =>    clk_50MHz,
+		reset        =>    reset_n,
+		comp_sum     =>    comp_sum_out,
+		valid_in     =>    comp_sum_valid_out,
+		valid_out    =>    valid_out, 
+		SAD_out      =>    score_out,
+		x_out        =>    x_out,
+		y_out        =>    y_out); 
  
- 
-    port map (
-	  -- Inputs
-      clk_50MHz            => clk_tb,
-      reset                => reset_tb,
-      -- inputs from softcore 
-      template             => template_tb,
-      -- inputs from window buffer
-	  window_in          => window_in_tb,   
-     -- window_in            => window_in,
-      --x_in                 => x_in,
-      --y_in                 => y_in,
-      valid_in             => valid_in_tb,
-      -- Outputs  
-      valid_out             => valid_out_tb,
-	  window_out            => window_out_tb); 
-
-
 	
 END ARCHITECTURE;
 

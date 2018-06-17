@@ -30,10 +30,10 @@ signal  valid_in       : std_logic := '0';
   -----------------------------
   -- Observed Signals 
   -----------------------------
-signal  score_out     : Score_t := (others => '1');
+signal  score_out     : Score_t := (others => '0');
 signal  x_out         : X_t;
 signal  y_out         : Y_t;
-signal  valid_out     : std_logic := '0'; 
+signal  valid_out_tb     : std_logic := '0'; 
   
 
   -----------------------------
@@ -51,7 +51,7 @@ constant clockperiod  : time := 20 ns;  -- clk period time
 type intent_model is record
     pixel_in         : Pixel_t; 
     pixel_tem        : Pixel_t;
-	score_out_exp    : integer range 0 to 261120; 
+	expected    : integer range 0 to 261120; 
 	x_in             : X_t;
 	y_in             : Y_t;
 end record;
@@ -62,14 +62,13 @@ constant intent_models : intent_model_array := (
 -- pixel_in , pixel_tem , expected score, x coordinate, y coordinate
 ("00000000", "11111111", 261120, 0, 0),
 ("11111111", "11111111", 0, 32, 57),
-("10000000", "00000000", 131072, 45, 10),
-("00000000", "00000001", 1024, 1, 7),
+("00000000", "00000010", 2048, 1, 7),
 ("10000001", "10000001", 0, 1, 1),
-("11111111", "00000000", 261120	, 60, 78));
+("11111111", "00111110", 197632, 60, 78));
 
 -- the incrementing count for the response monitor
 signal count : integer range 0 to 10 := 0;
-
+signal monitor_count  : integer range 0 to 10 := 0; 
   
 begin  -- architecture Bhv
 
@@ -89,19 +88,21 @@ begin  -- architecture Bhv
   uut: entity work.SAD
    port map (
 	  -- Inputs
-      clk_50MHz            => clk_50MHz,
+      clk_50MHz              => clk_50MHz,
       reset_n                => reset_n,
       -- inputs from softcore 
-      template             => template,
+      template               => template,
       -- inputs from window buffer
-	  window_info          => window_info,   
+	  window_info            => window_info,   
      -- window_in            => window_in,
       --x_in                 => x_in,
       --y_in                 => y_in,
-      valid_in             => valid_in,
+      valid_in               => valid_in,
       -- Outputs
-      score_out             => score_out,  
-      valid_out             => valid_out);
+      score_out              => score_out,  
+      valid_out              => valid_out_tb,
+	  x_out                  => x_out,
+      y_out                  => y_out);
    
   -----------------------------
   -- stimuli process 
@@ -131,32 +132,28 @@ begin  -- architecture Bhv
 	window_info.y           <= intent_models(i).y_in;
   
 	-- wait for signals to settle
-	wait for 20 ns; 
+	
     valid_in <= '1';
-	wait until valid_out = '1';
+	wait for 20 ns;
 	end loop;
 	
 	wait; 
   end process StimuliProcess;
   
   
- MonitorProcess : process
-	variable output_sc : integer range 0 to 300000; 
-	begin
-        wait for clockperiod; -- one clock periode idle before start 
-	    wait until clk_50MHz = '1'; -- Align clock
-	if valid_out = '1' then
-		output_sc := to_integer(score_out);
-		assert ( output_sc = intent_models(count).score_out_exp)
-		report "good " --& integer'image(output_sc)
-		severity note;
-		count <= count+1;
-	end if;
-	
-	if count >= intent_models'high then
-		wait; 
-	end if; 
- end process MonitorProcess;
+  MonitorProcess : process
   
+  begin
+ 
+	if valid_out_tb = '1' AND monitor_count < 5 then
+		assert (to_integer(score_out) = intent_models(monitor_count).expected)
+		report "the numbers are equal" 
+		severity note; 
+		monitor_count <= monitor_count +1; 
+	end if; 
+	
+	wait for clockperiod; 
+ 
+  end process MonitorProcess; 
   
 end architecture test_bench;
