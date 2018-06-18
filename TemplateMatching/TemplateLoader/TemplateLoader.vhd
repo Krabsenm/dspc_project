@@ -26,6 +26,7 @@ end TemplateLoader;
 architecture arch of TemplateLoader is
   -- Signal Declarations
   signal writedata : std_logic_vector(15 downto 0) := (others => '0');
+  signal ready : std_logic := '0'; 
 begin
 
   -- No read data
@@ -42,14 +43,18 @@ begin
         if avs_s1_write = '1' then
           if avs_s1_address = "00000000" then
             case avs_s1_byteenable is
-              when "01" => temp_pixel_out <= temp_pixel_out(15 downto 8) & avs_s1_writedata(7 downto 0);
-              when "10" => temp_pixel_out <= avs_s1_writedata(15 downto 8) & temp_pixel_out(7 downto 0);
-              when "11" => temp_pixel_out <= avs_s1_writedata;
-              when others => temp_pixel_out <= temp_pixel_out;
+              when "01" => writedata <= writedata(15 downto 8) & avs_s1_writedata(7 downto 0);
+              when "10" => writedata <= avs_s1_writedata(15 downto 8) & writedata(7 downto 0);
+              when "11" => 
+			    writedata <= avs_s1_writedata;
+			    ready <= '1'; 
+              when others => writedata <= writedata;
             end case;
-			valid_out <= '1';
+			temp_pixel_out <= unsigned(writedata);
+			valid_out <= ready;
           else
 			valid_out <= '0';
+			ready <= '0';
 		  end if;
         end if;
       end if;

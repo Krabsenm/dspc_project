@@ -6,10 +6,10 @@ clear, close all;
 %img = imread('rice.tif');
 %img = imread('test_img2.jpg');
 %img = rgb2gray(img);
-img = Template; 
+img = [I; I]; 
 
 figure;
-imshow(img);
+imshow(img, []);
 
 SaveImgInTextFile(img, 'templateTestFull.txt', '%d'); % Format %d or %x
 
