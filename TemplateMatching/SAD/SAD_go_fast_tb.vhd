@@ -8,12 +8,12 @@ use ieee.math_real.all;
 use work.TemplateMatchingTypePckg.all;
 
 --------------------------------------------------------------------------------
-entity  SAD_tb is
+entity  SAD_go_fast_tb is
 end entity ;
 --------------------------------------------------------------------------------
 
 
-architecture test_bench of SAD_tb is
+architecture test_bench of SAD_go_fast_tb is
   -----------------------------
   -- Stimulus Signals 
   -----------------------------
@@ -85,11 +85,11 @@ begin  -- architecture Bhv
   -----------------------------
   -- component instantiation 
   -----------------------------
-  uut: entity work.SAD
+  uut: entity work.SAD_go_fast
    port map (
 	  -- Inputs
-      clk_50MHz              => clk_50MHz,
-      reset_n                => reset_n,
+      clk              => clk_50MHz,
+      reset                => reset_n,
       -- inputs from softcore 
       template               => template,
       -- inputs from window buffer

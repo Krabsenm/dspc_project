@@ -20,16 +20,14 @@ port(
 	X_out   : out X_t; 
 	Y_out   : out Y_t; 
 	valid_out  : out std_logic);
-	
-	
 end entity; 
 
 
 architecture behavioral of adder_tree is
   -- declare signals, components here...
   constant correction_sum : unsigned(10 downto 0) := (10 => '1', others => '0');  
-  signal pipe_delay_in : integer range 0 to 10 := 0; -- stages in fully pipelined implementation 
-  signal pipe_delay_out : integer range 0 to 10 := 0; -- stages in fully pipelined implementation 
+  signal pipe_delay_in : integer range 0 to 11 := 0; -- stages in fully pipelined implementation 
+  signal pipe_delay_out : integer range 0 to 11 := 0; -- stages in fully pipelined implementation 
   
   type X_out_array_t is array(0 to 9) of X_t;  
   type Y_out_array_t is array(0 to 9) of Y_t; 
@@ -69,7 +67,7 @@ begin
 	if (reset = '0') then   -- reset to idle state 
 		valid_out <= '0'; -- no valid output
 	elsif rising_edge(clk_50MHz) then
-		if valid_in = '1' OR pipe_delay_in < 10 then
+		if valid_in = '1' OR pipe_delay_in < 11 then
 		-- stage 1
 			for a in 0 to TEMPLATE_SIZE/2-1 loop -- rows
 				for b in 0 to TEMPLATE_SIZE-1 loop -- column	
@@ -133,7 +131,7 @@ begin
 			end if; 
 			
 			-- set valid_out high when input have propagated through the pipeline
-			if pipe_delay_out = 10	 then  
+			if pipe_delay_out = 11	 then  
 				valid_out <= '1';
 			else
 				pipe_delay_out <= pipe_delay_out + 1; 
