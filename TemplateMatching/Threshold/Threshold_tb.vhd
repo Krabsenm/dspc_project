@@ -4,29 +4,26 @@ use ieee.numeric_std.all;
 use ieee.math_real.all;
 --library unisim;
 --use unisim.vcomponents.all;
+use work.TemplateMatchingTypePckg.all; 
+
 --------------------------------------------------------------------------------
-entity  Threshold_tb is
+entity  threshold_tb is
 end entity ;
 --------------------------------------------------------------------------------
 
-architecture test_bench of SAD_tb is
+architecture test_bench of threshold_tb is
   -----------------------------
   -- Stimulus Signals 
   -----------------------------
-signal   clk_50MHz     : std_logic  := '1';
-signal   reset_n       : std_logic  := '0';
+signal   clk           : std_logic  := '1';
+signal   reset         : std_logic  := '1';
 
-signal window_info     : WindowInfo_t := WindowInfo_t_init;
---signal  window_in      : Window_t;
-signal  template       : Window_t;
---signal  x_in           : X_t;
---signal  y_in           : Y_t;
-signal  valid_in       : std_logic := '0';
+signal   valid_in      : std_logic_vector(NUM_SAD-1 downto 0);
+signal   scores_in     : threshold_data_inputs_t;
 
   -----------------------------
   -- Observed Signals 
   -----------------------------
-signal  score_out     : Score_t := (others => '1');
 signal  x_out         : X_t;
 signal  y_out         : Y_t;
 signal  valid_out     : std_logic := '0'; 
@@ -36,93 +33,94 @@ signal  valid_out     : std_logic := '0';
   -- test bench Signals 
   -----------------------------   
   -- clock
-constant clockperiod  : time := 20 ns;  -- clk period time
-
-
-  -----------------------------
-  -- Intent Model
-  -----------------------------
-type intent_model is record
-    pixel_in         : Pixel_t; 
-    pixel_tem        : Pixel_t;
-	score_out_exp    : integer range 0 to 261120; 
-	x_in             : X_t;
-	y_in             : Y_t;
-end record;
-
-type intent_model_array is array (natural range <>) of intent_model; 
-
-constant intent_models : intent_model_array := (
--- pixel_in , pixel_tem , expected score, x coordinate, y coordinate
-("00000000", "11111111", 261120, 0, 0),
-("11111111", "11111111", 0, 32, 57),
-("10000000", "00000000", 131072, 45, 10),
-("00000000", "00000001", 1024, 1, 7),
-("10000001", "10000001", 0, 1, 1),
-("11111111", "00000000", 261120	, 60, 78));
+  signal end_sim : std_logic := '0';
+  constant clockperiod  : time := 10 ns;  -- clk period time
 
   
 begin  -- architecture Bhv
 
   -----------------------------
-  -- clock generation 
-  ----------------------------- 
-  clk_50MHz <= not clk_50MHz after clockperiod/2 when end_sim = '0' else unaffected; 
-  -----------------------------
-  -- reset generation 
-  -----------------------------
-  reset_n         <= '0', '1' after 20 ns;
- 
-  -----------------------------
   -- component instantiation 
   -----------------------------
   uut: entity work.Threshold
-   port map (
+    generic map(
+      X_MAX     => 3,
+      Y_MAX     => 2)
+    port map (
 	  -- Inputs
-      clk_50MHz            => clk_50MHz,
-      reset_n                => reset_n,
-      -- inputs from softcore 
-      template             => template,
-      -- inputs from window buffer
-	  window_info          => window_info,   
-     -- window_in            => window_in,
-      --x_in                 => x_in,
-      --y_in                 => y_in,
-      valid_in             => valid_in,
+      clk                   => clk,
+      reset                 => reset,
+      
+      valid_in              => valid_in,
+      scores_in             => scores_in,
+
       -- Outputs
-      score_out             => score_out,  
-      valid_out             => valid_out);
-   
+      x_out                 => x_out,
+      y_out                 => y_out,
+      valid_out             => valid_out); 
+  
+  -- clock generation
+  clk <= not clk after clockperiod/2 when end_sim = '0' else unaffected; 
+
+  -- reset generation
+  reset <= '1', '0' after 125 ns; 
+  
   -----------------------------
   -- stimuli process 
   -----------------------------
   
   
   StimuliProcess : process
-  
   begin
- 
-	for i in intent_models'range loop 
- 
-	xxxx := intent_models(i).xxxx;
-	-- wait for signals to settle
-	wait for 20 ns; 
-	end loop;
-	
-	wait; 
+    wait until reset = '0'; -- reset
+    wait for clockperiod; -- one clock periode idle before start 
+    wait until clk = '1'; -- Align clock
+    
+    scores_in(0) <= ("000000000010000111", 1,1);
+    scores_in(1) <= ("000000000001000010", 2,1);
+    scores_in(2) <= ("000000100000000001", 3,1);
+    valid_in     <= "111";
+    
+    wait until clk = '0';
+    wait until clk = '1';
+    
+    scores_in(0) <= ("000000000010000111", 1,2);
+    scores_in(1) <= ("000000000000000010", 2,2);
+    scores_in(2) <= ("000000000000010001", 3,2);
+    valid_in     <= "111";
+    
+    wait until clk = '0';
+    wait until clk = '1';
+    
+    
+    valid_in <= "000";
+    
+    wait;
   end process StimuliProcess;
   
+  -----------------------------
+  -- monitor process 
+  -----------------------------
   
  MonitorProcess : process 
-	begin
-        wait for clockperiod; -- one clock periode idle before start 
-	    wait until clk_50MHz = '1'; -- Align clock
-	if valid_out = '1' then
-		assert ()
-		report "good " --& integer'image(output_sc)
-		severity note;
-	end if;
- end process MonitorProcess;
+  begin
+  
+    wait until reset = '0'; -- reset
+    wait for clockperiod; -- one clock periode idle before start 
+    wait until clk = '1'; -- Align clock
+    
+    wait until valid_out = '1';
+    
+    assert (x_out = 2 AND y_out = 0)
+      report "Not good"
+      severity error;
+  
+    wait for clockperiod;
+    
+    end_sim <= '1';
+    wait;
+    
+  end process MonitorProcess;
   
   
 end architecture test_bench;
