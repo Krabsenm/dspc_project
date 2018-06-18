@@ -13,8 +13,8 @@ architecture arch of TemplateLoader_tb is
   -- declare signals, components here...
   
     -- Avalon Interface
-  signal  csi_clockreset_clk     :  std_logic;                     -- Avalon Clk
-  signal  csi_clockreset_reset_n :  std_logic;                     -- Avalon Reset
+  signal  csi_clockreset_clk     :  std_logic := '0';                     -- Avalon Clk
+  signal  csi_clockreset_reset_n :  std_logic  := '1';                     -- Avalon Reset
   signal  avs_s1_write           :  std_logic;                     -- Avalon wr
   signal  avs_s1_read            :  std_logic;                     -- Avalon rd
   signal  avs_s1_chipselect      :  std_logic;                     -- Avalon cs
@@ -24,7 +24,7 @@ architecture arch of TemplateLoader_tb is
   signal  avs_s1_readdata        :  std_logic_vector(15 downto 0); -- Avalon rd data
 
     -- Template for SAD module    
-  signal	temp_pixel_out               : unsigned(15 downto 0); 
+  signal	temp_pixel_out               : std_logic_vector(15 downto 0); 
   signal	valid_out                    : std_logic;
   
   -----------------------------
@@ -81,7 +81,7 @@ architecture arch of TemplateLoader_tb is
    avs_s1_address      <= B"00000000";
   
 
-   wait until csi_clockreset_reset_n = '0'; -- reset
+   wait until csi_clockreset_clk = '0'; -- Align clock
    wait for clockperiod; -- one clock periode idle before start 
    wait until csi_clockreset_clk = '1'; -- Align clock
     
@@ -91,16 +91,16 @@ architecture arch of TemplateLoader_tb is
    avs_s1_chipselect   <= '1';
    avs_s1_byteenable   <= B"11";
 
-   wait until csi_clockreset_reset_n = '0'; -- reset
+   wait until csi_clockreset_clk = '0'; -- Align clock
    wait for clockperiod; -- one clock periode idle before start 
    wait until csi_clockreset_clk = '1'; -- Align clock
-   
+
 
    avs_s1_write        <= '0'; 
    avs_s1_read         <= '0';
    avs_s1_chipselect   <= '0';
    avs_s1_byteenable   <= B"00";
-         
+      
     
     wait;
   end process; 
