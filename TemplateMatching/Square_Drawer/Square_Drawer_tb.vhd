@@ -94,13 +94,15 @@ begin  -- architecture Bhv
     wait until clk = '1'; -- Align clock
     
     in_xy_valid <= '1';
-    in_x <= 0;
-    in_y <= 0;
+    in_x <= IMAGE_WIDTH - 32;
+    in_y <= IMAGE_HEIGHT - 32;
     wait for clockperiod;
     in_xy_valid <= '0';
+    in_valid <= '1';
     in_endofpacket <= '1';
     wait for clockperiod;
     in_endofpacket <= '0';
+    in_valid <= '0';
     
     
     wait for 1 us;
@@ -158,6 +160,8 @@ begin  -- architecture Bhv
     --file_open(videooutfile, image_outName);
     
     wait until reset = '0';
+    wait until out_valid = '1';
+    wait until out_valid = '0';
     wait until out_valid = '1';
     
     while (out_valid = '1' ) loop

@@ -3,57 +3,12 @@ USE ieee.std_logic_1164.all;
 USE ieee.std_logic_unsigned.all;
 USE ieee.std_logic_misc.all;
 
--- ******************************************************************************
--- * License Agreement                                                          *
--- *                                                                            *
--- * Copyright (c) 1991-2012 Altera Corporation, San Jose, California, USA.     *
--- * All rights reserved.                                                       *
--- *                                                                            *
--- * Any megafunction design, and related net list (encrypted or decrypted),    *
--- *  support information, device programming or simulation file, and any other *
--- *  associated documentation or information provided by Altera or a partner   *
--- *  under Altera's Megafunction Partnership Program may be used only to       *
--- *  program PLD devices (but not masked PLD devices) from Altera.  Any other  *
--- *  use of such megafunction design, net list, support information, device    *
--- *  programming or simulation file, or any other related documentation or     *
--- *  information is prohibited for any other purpose, including, but not       *
--- *  limited to modification, reverse engineering, de-compiling, or use with   *
--- *  any other silicon devices, unless such use is explicitly licensed under   *
--- *  a separate agreement with Altera or a megafunction partner.  Title to     *
--- *  the intellectual property, including patents, copyrights, trademarks,     *
--- *  trade secrets, or maskworks, embodied in any such megafunction design,    *
--- *  net list, support information, device programming or simulation file, or  *
--- *  any other related documentation or information provided by Altera or a    *
--- *  megafunction partner, remains with Altera, the megafunction partner, or   *
--- *  their respective licensors.  No other licenses, including any licenses    *
--- *  needed under any third party's intellectual property, are provided herein.*
--- *  Copying or modifying any file, or portion thereof, to which this notice   *
--- *  is attached violates this copyright.                                      *
--- *                                                                            *
--- * THIS FILE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR    *
--- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,   *
--- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL    *
--- * THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER *
--- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING    *
--- * FROM, OUT OF OR IN CONNECTION WITH THIS FILE OR THE USE OR OTHER DEALINGS  *
--- * IN THIS FILE.                                                              *
--- *                                                                            *
--- * This agreement shall be governed in all respects by the laws of the State  *
--- *  of California and by the laws of the United States of America.            *
--- *                                                                            *
--- ******************************************************************************
-
--- ******************************************************************************
--- *                                                                            *
--- *                     <DESCRIPTION>                                          *                                                              *
--- *                                                                            *
--- ******************************************************************************
 
 ENTITY altera_up_avalon_video_template_matching IS 
 
 GENERIC (
   
-  WIDTH  :INTEGER                  := 640 -- Image width in pixels
+  WIDTH  :INTEGER                  := 320 -- Image width in pixels
   
 );
 
@@ -96,50 +51,31 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
 -- *****************************************************************************
   
   -- Internal Wires
-  SIGNAL  transfer_data    :STD_LOGIC;
+  SIGNAL transfer_data       :STD_LOGIC;
   
-  SIGNAL  filter_1_data_out  :STD_LOGIC_VECTOR( 8 DOWNTO  0);    -- Gaussian_Smoothing
-  SIGNAL  filter_2_data_out  :STD_LOGIC_VECTOR( 9 DOWNTO  0);    -- Sobel operator
-  SIGNAL  filter_3_data_out  :STD_LOGIC_VECTOR( 7 DOWNTO  0);    -- Nonmaximum Suppression
-  SIGNAL  filter_4_data_out  :STD_LOGIC_VECTOR( 7 DOWNTO  0);    -- Hyteresis
-  SIGNAL  final_value      :STD_LOGIC_VECTOR( 7 DOWNTO  0);    -- Intensity Correction
+  signal row_valid           :std_logic;  -- Row_buffer
+  signal row_data            :ImageRow_t; -- Row_buffer
+  signal row_begin           :std_logic;  -- Row_buffer
+  signal window_data         :window_buffer_data_output_t;
+  signal window_valid        :std_logic;
+  SIGNAL final_value         :STD_LOGIC_VECTOR( 7 DOWNTO  0); 
   
-  SIGNAL  pixel_info_in    :STD_LOGIC_VECTOR( 1 DOWNTO  0);  
-  SIGNAL  pixel_info_out    :STD_LOGIC_VECTOR( 1 DOWNTO  0);  
+  SIGNAL pixel_info_in       :STD_LOGIC_VECTOR( 1 DOWNTO  0);  
+  SIGNAL pixel_info_out      :STD_LOGIC_VECTOR( 1 DOWNTO  0);  
   
   -- Internal Registers
-  SIGNAL  data          :STD_LOGIC_VECTOR( 7 DOWNTO  0);  
-  SIGNAL  data_shifted    :STD_LOGIC_VECTOR( 7 DOWNTO  0);  
-  SIGNAL  startofpacket    :STD_LOGIC;
-  SIGNAL  endofpacket      :STD_LOGIC;
-  SIGNAL  valid          :STD_LOGIC;
-  
-  SIGNAL  flush_pipeline    :STD_LOGIC;
+  SIGNAL data                :STD_LOGIC_VECTOR( 7 DOWNTO  0);  
+  SIGNAL data_shifted        :STD_LOGIC_VECTOR( 7 DOWNTO  0);  
+  SIGNAL startofpacket       :STD_LOGIC;
+  SIGNAL endofpacket         :STD_LOGIC;
+  SIGNAL valid               :STD_LOGIC;
+
+  SIGNAL  flush_pipeline      :STD_LOGIC;
   
   -- State Machine Registers
   
   -- Integers
   
--- *****************************************************************************
--- *                          Component Declarations                           *
--- *****************************************************************************
-  COMPONENT altera_up_edge_detection_pixel_info_shift_register
-  GENERIC ( 
-    SIZE    :INTEGER
-  );
-  PORT (
-    -- Inputs
-    clock    :IN    STD_LOGIC;
-    clken    :IN    STD_LOGIC;
-  
-    shiftin  :IN    STD_LOGIC_VECTOR( 1 DOWNTO  0);
-
-    -- Bidirectionals
-
-    -- Outputs
-    shiftout  :BUFFER  STD_LOGIC_VECTOR( 1 DOWNTO  0)
-  );
-  END COMPONENT;
 
 BEGIN
 -- *****************************************************************************
@@ -151,7 +87,7 @@ BEGIN
 -- *                             Sequential Logic                              *
 -- *****************************************************************************
 
-  -- Output Registers
+  -- Output Registers ??????????????
   PROCESS (clk)
   BEGIN
     IF clk'EVENT AND clk = '1' THEN
@@ -194,7 +130,7 @@ BEGIN
     END IF;
   END PROCESS;
 
-
+  -- Flush pipeline
   PROCESS (clk)
   BEGIN
     IF clk'EVENT AND clk = '1' THEN
@@ -228,10 +164,93 @@ BEGIN
 -- *****************************************************************************
 -- *                          Component Instantiations                         *
 -- *****************************************************************************
+  Row_buffer_l: entity work.row_buffer
+  port map (
+    -- inputs
+    clk               => clk,
+    reset             => reset,
 
+    in_data           => data,
+    in_startofpacket  => startofpacket,
+    in_endofpacket    => endofpacket,
+    in_valid          => transfer_data,
 
+    -- Outputs
+    in_ready          => in_ready,
+    out_valid         => row_valid,
+    out_data          => row_data,
+    out_begin         => row_begin
+  );
+  
+  window_buffer_l: entity work.window_buffer
+  port map (
+    -- inputs
+    clk               => clk,
+    reset             => reset,
+
+    in_data           => row_data,
+    in_valid          => row_valid,
+    in_begin          => row_begin,
+
+    -- Outputs
+    out_data          => window_data,
+    out_valid         => window_valid
+  );
+
+  sad0_l: entity work.sad
+  port map (
+    -- inputs
+    clk               => clk,
+    reset             => reset,
+    
+    template          => template,
+    window_info       => window_data(0),
+    valid_in          => window_valid,
+    
+    -- output
+    score_out         => sad0_score,
+    valid_out         => sad0_valid,
+    x_out             => sad0_x,
+    y_out             => sad0_y
+  );
+  
+  sad1_l: entity work.sad
+  port map (
+    -- inputs
+    clk               => clk,
+    reset             => reset,
+    
+    template          => template,
+    window_info       => window_data(1),
+    valid_in          => window_valid,
+    
+    -- output
+    score_out         => sad1_score,
+    valid_out         => sad1_valid,
+    x_out             => sad1_x,
+    y_out             => sad1_y
+  );
+  
+  sad2_l: entity work.sad
+  port map (
+    -- inputs
+    clk               => clk,
+    reset             => reset,
+    
+    template          => template,
+    window_info       => window_data(2),
+    valid_in          => window_valid,
+    
+    -- output
+    score_out         => sad2_score,
+    valid_out         => sad2_valid,
+    x_out             => sad2_x,
+    y_out             => sad2_y
+  );
+  
+  
   -- defparam Pixel_Info_Shift_Register.SIZE = WIDTH;  
-  Pixel_Info_Shift_Register : altera_up_edge_detection_pixel_info_shift_register 
+  Pixel_Info_Shift_Register : entity work.altera_up_edge_detection_pixel_info_shift_register 
   GENERIC MAP ( 
     SIZE    => (WIDTH * 5) + 28
   )
@@ -241,9 +260,7 @@ BEGIN
     clken    => transfer_data,
     
     shiftin  => pixel_info_in,
-  
-    -- Bidirectionals
-  
+
     -- Outputs
     shiftout  => pixel_info_out
   );

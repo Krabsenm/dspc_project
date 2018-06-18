@@ -66,56 +66,60 @@ begin
         x_current           <= 0;
         y_current           <= 0;
       
-      elsif in_valid = '1' then
+       else
+        -- Get draw coordiantes from threshold module
         if in_xy_valid = '1' then
           draw <= '1';
           x <= in_x;
           y <= in_y;
         end if;
         
-        case square_drawer_state is
-          when pass_through =>
-            out_data <= in_data;
+        -- Draw sqaure on stream or pass stream
+        if in_valid = '1' then
+          case square_drawer_state is
+            when pass_through =>
+              out_data <= in_data;
+              
+            when drawing =>
+              out_data <= in_data;
+              if (y_current = y_drawing) OR (y_current = (y_drawing+TEMPLATE_SIZE-1)) then
+                if (x_drawing <= x_current) AND (x_current < (x_drawing+TEMPLATE_SIZE)) then
+                  out_data <= square_color;
+                end if;
+              elsif y_drawing < y_current AND y_current < (y_drawing+TEMPLATE_SIZE-1) then
+                if x_current = x_drawing OR x_current = (x_drawing+TEMPLATE_SIZE-1) then
+                  out_data <= square_color;
+                end if;
+              end if;
             
-          when drawing =>
-            out_data <= in_data;
-            if (y_current = y_drawing) OR (y_current = (y_drawing+TEMPLATE_SIZE-1)) then
-              if (x_drawing <= x_current) AND (x_current < (x_drawing+TEMPLATE_SIZE)) then
-                out_data <= square_color;
+              -- set coordinate of next pixel
+              
+              if x_current = (IMAGE_WIDTH - 1) then
+                x_current <= 0;
+                y_current <= y_current + 1;
+              else
+                x_current <= x_current + 1;
               end if;
-            elsif y_drawing < y_current AND y_current < (y_drawing+TEMPLATE_SIZE-1) then
-              if x_current = x_drawing OR x_current = (x_drawing+TEMPLATE_SIZE-1) then
-                out_data <= square_color;
-              end if;
-            end if;
+              
+              
+            when others =>
+              null;
+          end case;
           
-            -- set coordinate of next pixel
+          if in_endofpacket = '1' then
+            x_current <= 0;
+            y_current <= 0;
             
-            if x_current = (IMAGE_WIDTH - 1) then
-              x_current <= 0;
-              y_current <= y_current + 1;
+            if draw = '1' then
+              square_drawer_state <= drawing;
+              x_drawing <= x;
+              y_drawing <= y;
+              draw <= '0';
             else
-              x_current <= x_current + 1;
+              square_drawer_state <= pass_through;
             end if;
-            
-            
-          when others =>
-            null;
-        end case;
-        
-        if in_endofpacket = '1' then
-          x_current <= 0;
-          y_current <= 0;
-          
-          if draw = '1' then
-            square_drawer_state <= drawing;
-            x_drawing <= x;
-            y_drawing <= y;
-            draw <= '0';
-          else
-            square_drawer_state <= pass_through;
-          end if;
-        end if; -- endofpacket
+          end if; -- endofpacket
+        end if;
       end if; -- reset
     end if; -- rising_edge
   end process;

@@ -13,8 +13,8 @@ package TemplateMatchingTypePckg is
   constant TEMPLATE_SIZE  : natural := 32;
   constant SCORE_MAX      : natural := TEMPLATE_SIZE*TEMPLATE_SIZE*(2**(PIXEL_SIZE));
   constant NUM_SAD        : natural := 3;
-  constant LAST_X         : natural := IMAGE_HEIGHT-1-TEMPLATE_SIZE; 
-  constant LAST_Y         : natural := IMAGE_WIDTH-1-TEMPLATE_SIZE;
+  constant LAST_X         : natural := IMAGE_HEIGHT-TEMPLATE_SIZE; 
+  constant LAST_Y         : natural := IMAGE_WIDTH-TEMPLATE_SIZE;
   
   subtype Pixel_t  is unsigned(PIXEL_SIZE-1 downto 0);
   type ImageRow_t  is array(0 to IMAGE_WIDTH-1) of Pixel_t;
@@ -42,8 +42,16 @@ package TemplateMatchingTypePckg is
     y      : Y_t;
   end record;
 
+  type ScoreInfo_t is record
+    score : Score_t;
+    x     : X_t;
+    y     : Y_t;
+  end record;
   
-  type window_buffer_data_output_t is array(0 to NUM_SAD) of WindowInfo_t;
+  type window_buffer_data_output_t is array(0 to NUM_SAD-1) of WindowInfo_t;
+  type threshold_data_inputs_t     is array(0 to NUM_SAD-1) of ScoreInfo_t;
+  
+  constant Score_t_max : Score_t(X"3fc00"); -- 32*32*255 = 261.120 = 0x3fc00
   
   -- Reset types to all '0' constanst
   constant Pixel_t_init      : Pixel_t      := (others => '0');
