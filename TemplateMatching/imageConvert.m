@@ -6,12 +6,12 @@ clear, close all;
 %img = imread('rice.tif');
 %img = imread('test_img2.jpg');
 %img = rgb2gray(img);
-img = Template; 
+%img = Template; 
 
 figure;
-imshow(img);
+imshow(img, []);
 
-SaveImgInTextFile(img, 'templateTestFull.txt', '%d'); % Format %d or %x
+SaveImgInTextFile(img, 'awesomeimage.txt', '%d'); % Format %d or %x
 
 %% Use orig img for formatting output image
 imgEdge = LoadImgFromTextFile(img, 'ImageOut.txt');

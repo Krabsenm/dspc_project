@@ -2,7 +2,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.std_logic_unsigned.all;
 USE ieee.std_logic_misc.all;
-
+USE work.TemplateMatchingTypePckg.all;
 
 ENTITY altera_up_avalon_video_template_matching IS 
 
@@ -27,6 +27,7 @@ PORT (
 
   bypass             :IN    STD_LOGIC;
 
+  in_template        :IN    Window_t; -- remove????  
   -- Bidirectional
 
   -- Outputs
@@ -72,16 +73,18 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
   signal sad1_valid           :std_logic;
   signal sad1_x               :X_t;
   signal sad1_y               :Y_t;
-  signal sad2_score           :Score_t;
-  signal sad2_valid           :std_logic;
-  signal sad2_x               :X_t;
-  signal sad2_y               :Y_t;
+  --signal sad2_score           :Score_t;
+  --signal sad2_valid           :std_logic;
+  --signal sad2_x               :X_t;
+  --signal sad2_y               :Y_t;
   
-  signal sad0_scoreInfo       :Score_t;
-  signal sad1_scoreInfo       :Score_t;
-  signal sad2_scoreInfo       :Score_t;
+  signal sad0_scoreInfo       :ScoreInfo_t;
+  signal sad1_scoreInfo       :ScoreInfo_t;
+  --signal sad2_scoreInfo       :ScoreInfo_t;
   
   -- Threshold
+  signal sad_valid            :std_logic_vector(NUM_SAD-1 downto 0);
+  signal sad_scoreInfo        :threshold_data_inputs_t;
   signal threshold_x          :X_t;
   signal threshold_y          :Y_t;
   signal threshold_valid      :std_logic;
@@ -116,7 +119,7 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
   
 
 BEGIN
-
+  template <= in_template;
   sad0_scoreInfo.score <= sad0_score;
   sad0_scoreInfo.x     <= sad0_x;
   sad0_scoreInfo.y     <= sad0_y;
@@ -125,9 +128,13 @@ BEGIN
   sad1_scoreInfo.x     <= sad1_x;
   sad1_scoreInfo.y     <= sad1_y;
   
-  sad2_scoreInfo.score <= sad2_score;
-  sad2_scoreInfo.x     <= sad2_x;
-  sad2_scoreInfo.y     <= sad2_y;
+  --sad2_scoreInfo.score <= sad2_score;
+  --sad2_scoreInfo.x     <= sad2_x;
+  --sad2_scoreInfo.y     <= sad2_y;
+  
+  sad_valid            <= sad0_valid & sad1_valid;-- & sad2_valid;
+  sad_scoreInfo        <= sad0_scoreInfo & sad1_scoreInfo;-- & sad2_scoreInfo;
+  
 -- *****************************************************************************
 -- *                         Finite State Machine(s)                           *
 -- *****************************************************************************
@@ -281,26 +288,26 @@ BEGIN
     y_out             => sad1_y
   );
   
-  sad2_l: entity work.sad
-  port map (
-    -- inputs
-    clk               => clk,
-    reset             => reset,
-    
-    template          => template,
-    window_info       => window_data(2),
-    valid_in          => window_valid,
-    
-    -- output
-    score_out         => sad2_score,
-    valid_out         => sad2_valid,
-    x_out             => sad2_x,
-    y_out             => sad2_y
-  );
+  --sad2_l: entity work.sad
+  --port map (
+  --  -- inputs
+  --  clk               => clk,
+  --  reset             => reset,
+  --  
+  --  template          => template,
+  --  window_info       => window_data(2),
+  --  valid_in          => window_valid,
+  --  
+  --  -- output
+  --  score_out         => sad2_score,
+  --  valid_out         => sad2_valid,
+  --  x_out             => sad2_x,
+  --  y_out             => sad2_y
+  --);
   
   threshold_l: entity work.threshold
   generic map(
-    THRESHOLD => B"000000000001000000";
+    THRESHOLD => B"000000000001000000",
     X_MAX     => LAST_X,
     Y_MAX     => LAST_Y)
   port map (
@@ -308,8 +315,8 @@ BEGIN
     clk                   => clk,
     reset                 => reset,
     
-    valid_in              => sad0_valid & sad1_valid & sad2_valid,
-    scores_in             => sad0_scoreInfo & sad1_scoreInfo & sad2_scoreInfo,
+    valid_in              => sad_valid,   
+    scores_in             => sad_scoreInfo,
 
     -- Outputs
     x_out                 => threshold_x,

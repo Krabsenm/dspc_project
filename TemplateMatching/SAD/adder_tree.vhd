@@ -16,7 +16,7 @@ port(
 	comp_sum  : in WindowInfoC_t;  
 	valid_in   : in std_logic; 
 	-- outputs
-	SAD_out : out unsigned(17 downto 0);
+	SAD_out : out unsigned(17 downto 0) := B"111111110000000000";  -- max score: 32*32*255 = 261.120 = 0b‭111111110000000000;
 	X_out   : out X_t; 
 	Y_out   : out Y_t; 
 	valid_out  : out std_logic);
@@ -64,10 +64,15 @@ adder_treeProcess : process(clk_50MHz, reset)
 variable stage_0 : unsigned(18 downto 0) := (others => '0'); 
  
 begin
-	if (reset = '0') then   -- reset to idle state 
+	if (reset = '1') then   -- reset to idle state 
 		valid_out <= '0'; -- no valid output
+    SAD_out <= B"111111110000000000";  -- max score: 32*32*255 = 261.120 = 0b‭111111110000000000
 	elsif rising_edge(clk_50MHz) then
-		if valid_in = '1' OR pipe_delay_in < 11 then
+		if valid_in = '1' OR pipe_delay_in < 10 then
+      if valid_in = '1' AND pipe_delay_in = 10 then
+        pipe_delay_in <= 0;
+      end if;
+    
 		-- stage 1
 			for a in 0 to TEMPLATE_SIZE/2-1 loop -- rows
 				for b in 0 to TEMPLATE_SIZE-1 loop -- column	
@@ -123,7 +128,7 @@ begin
 	            Y_delay_line(9-l) <= Y_delay_line(9-(l+1));				
 			end loop;
 				X_delay_line(0) <= comp_sum.x;
-                Y_delay_line(0) <= comp_sum.y;				
+        Y_delay_line(0) <= comp_sum.y;				
 			
 				
 			if valid_in = '0' then
@@ -131,14 +136,14 @@ begin
 			end if; 
 			
 			-- set valid_out high when input have propagated through the pipeline
-			if pipe_delay_out = 11	 then  
+			if pipe_delay_out = 10	 then  
 				valid_out <= '1';
 			else
 				pipe_delay_out <= pipe_delay_out + 1; 
 			end if; 
-		else 
+		else -- Can we remove? for space?
 			valid_out <= '0';
-			pipe_delay_in <= 0;
+			
 			pipe_delay_out <= 0;			
 			stage_512 <= (others => (others => '0'));
 			stage_256 <= (others => (others => '0'));
@@ -150,7 +155,7 @@ begin
 			stage_4 <= (others => (others => '0'));
 			stage_2 <= (others => (others => '0'));
 			stage_1 <= (others => '0');
-			SAD_out <= (others => '0');
+			--SAD_out <= B"111111110000000000";  -- max score: 32*32*255 = 261.120 = 0b‭111111110000000000
 		end if; 
 	end if;		
 end process;

@@ -32,7 +32,7 @@ PORT (
   valid_in             :IN    STD_LOGIC;
   
   -- Outputs
-  score_out             : OUT    Score_t;  
+  score_out             : OUT    Score_t := (others => 'Z');  
   valid_out             : OUT    STD_LOGIC;
   x_out                 : OUT    X_t;
   y_out                 : OUT    Y_t 

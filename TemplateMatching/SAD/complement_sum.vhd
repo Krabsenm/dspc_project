@@ -31,7 +31,7 @@ compProcess : process(clk_50MHz, reset)
 	variable comp_T : WindowC_t;
 	variable comp_WT : WindowC_t;
 begin
-	if (reset = '0') then   -- reset to idle state 
+	if (reset = '1') then   -- reset to idle state 
 		valid_out_comp <= '0'; -- no valid output
 		window_out <= WindowInfoC_t_init;
 	elsif rising_edge(clk_50MHz) then
