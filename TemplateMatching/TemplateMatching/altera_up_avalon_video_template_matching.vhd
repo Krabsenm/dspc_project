@@ -2,7 +2,7 @@ LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.std_logic_unsigned.all;
 USE ieee.std_logic_misc.all;
-
+USE work.TemplateMatchingTypePckg.all;
 
 ENTITY altera_up_avalon_video_template_matching IS 
 
@@ -27,6 +27,7 @@ PORT (
 
   bypass             :IN    STD_LOGIC;
 
+  in_template        :IN    Window_t; -- remove????  
   -- Bidirectional
 
   -- Outputs
@@ -50,25 +51,65 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
 -- *                       Internal Signals Declarations                       *
 -- *****************************************************************************
   
-  -- Internal Wires
-  SIGNAL transfer_data       :STD_LOGIC;
+  -- Internal Wires --
+  SIGNAL transfer_data        :STD_LOGIC;
   
-  signal row_valid           :std_logic;  -- Row_buffer
-  signal row_data            :ImageRow_t; -- Row_buffer
-  signal row_begin           :std_logic;  -- Row_buffer
-  signal window_data         :window_buffer_data_output_t;
-  signal window_valid        :std_logic;
-  SIGNAL final_value         :STD_LOGIC_VECTOR( 7 DOWNTO  0); 
+  -- Row buffer
+  signal row_valid            :std_logic;  
+  signal row_data             :ImageRow_t; 
+  signal row_begin            :std_logic;  
   
-  SIGNAL pixel_info_in       :STD_LOGIC_VECTOR( 1 DOWNTO  0);  
-  SIGNAL pixel_info_out      :STD_LOGIC_VECTOR( 1 DOWNTO  0);  
+  -- Window buffer
+  signal window_data          :window_buffer_data_output_t;
+  signal window_valid         :std_logic;
+  
+  -- SADs
+  signal template             :Window_t;
+  signal sad0_score           :Score_t;
+  signal sad0_valid           :std_logic;
+  signal sad0_x               :X_t;
+  signal sad0_y               :Y_t;
+  signal sad1_score           :Score_t;
+  signal sad1_valid           :std_logic;
+  signal sad1_x               :X_t;
+  signal sad1_y               :Y_t;
+  --signal sad2_score           :Score_t;
+  --signal sad2_valid           :std_logic;
+  --signal sad2_x               :X_t;
+  --signal sad2_y               :Y_t;
+  
+  signal sad0_scoreInfo       :ScoreInfo_t;
+  signal sad1_scoreInfo       :ScoreInfo_t;
+  --signal sad2_scoreInfo       :ScoreInfo_t;
+  
+  -- Threshold
+  signal sad_valid            :std_logic_vector(NUM_SAD-1 downto 0);
+  signal sad_scoreInfo        :threshold_data_inputs_t;
+  signal threshold_x          :X_t;
+  signal threshold_y          :Y_t;
+  signal threshold_valid      :std_logic;
+  
+  -- Square Drawer
+  signal final_value          :STD_LOGIC_VECTOR( 7 DOWNTO  0); 
+  signal square_drawer_startofpacket :std_logic;
+  signal square_drawer_endofpacket   :std_logic;
+  signal square_drawer_valid         :std_logic;
+  
+  -- Pixel info
+  SIGNAL pixel_info_in        :STD_LOGIC_VECTOR( 1 DOWNTO  0);  
+  SIGNAL pixel_info_out       :STD_LOGIC_VECTOR( 1 DOWNTO  0);  
+  
+  -- Shifted ST bus
+  signal valid_shifted        :std_logic;
+  signal startofpacket_shifted:std_logic;
+  signal endofpacket_shifted  :std_logic;
   
   -- Internal Registers
-  SIGNAL data                :STD_LOGIC_VECTOR( 7 DOWNTO  0);  
-  SIGNAL data_shifted        :STD_LOGIC_VECTOR( 7 DOWNTO  0);  
-  SIGNAL startofpacket       :STD_LOGIC;
-  SIGNAL endofpacket         :STD_LOGIC;
-  SIGNAL valid               :STD_LOGIC;
+  SIGNAL data                 :STD_LOGIC_VECTOR( 7 DOWNTO  0);  
+  SIGNAL data_shifted         :STD_LOGIC_VECTOR( 7 DOWNTO  0);  
+  SIGNAL startofpacket        :STD_LOGIC;
+  SIGNAL endofpacket          :STD_LOGIC;
+  SIGNAL valid                :STD_LOGIC;
 
   SIGNAL  flush_pipeline      :STD_LOGIC;
   
@@ -78,6 +119,22 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
   
 
 BEGIN
+  template <= in_template;
+  sad0_scoreInfo.score <= sad0_score;
+  sad0_scoreInfo.x     <= sad0_x;
+  sad0_scoreInfo.y     <= sad0_y;
+  
+  sad1_scoreInfo.score <= sad1_score;
+  sad1_scoreInfo.x     <= sad1_x;
+  sad1_scoreInfo.y     <= sad1_y;
+  
+  --sad2_scoreInfo.score <= sad2_score;
+  --sad2_scoreInfo.x     <= sad2_x;
+  --sad2_scoreInfo.y     <= sad2_y;
+  
+  sad_valid            <= sad0_valid & sad1_valid;-- & sad2_valid;
+  sad_scoreInfo        <= sad0_scoreInfo & sad1_scoreInfo;-- & sad2_scoreInfo;
+  
 -- *****************************************************************************
 -- *                         Finite State Machine(s)                           *
 -- *****************************************************************************
@@ -97,16 +154,16 @@ BEGIN
         out_endofpacket  <= '0';
         out_valid      <= '0';
       ELSIF (transfer_data = '1') THEN
-         if (bypass = '1') then
-          out_data        <= data_shifted;
+        if (bypass = '1') then
+          out_data         <= data_shifted;
         else
-          out_data        <= final_value;
+          out_data         <= final_value;
         end if;
-        out_startofpacket  <= pixel_info_out(1) AND NOT (AND_REDUCE (pixel_info_out));
-        out_endofpacket  <= pixel_info_out(0) AND NOT (AND_REDUCE (pixel_info_out));
-        out_valid      <= (OR_REDUCE (pixel_info_out));
+        out_startofpacket  <= square_drawer_startofpacket;
+        out_endofpacket    <= square_drawer_endofpacket;
+        out_valid          <= square_drawer_valid;
       ELSIF (out_ready = '1') THEN
-        out_valid      <= '0';
+        out_valid          <= '0';
       END IF;
     END IF;
   END PROCESS;
@@ -155,12 +212,12 @@ BEGIN
   transfer_data <= in_ready OR 
       (flush_pipeline AND (out_ready OR NOT out_valid));
 
-  -- Output from drawer.........
-  final_value <= ???;
-
   pixel_info_in(1) <= in_valid AND NOT in_endofpacket; 
   pixel_info_in(0) <= in_valid AND NOT in_startofpacket;
-
+  
+  valid_shifted         <= (OR_REDUCE (pixel_info_out));
+  startofpacket_shifted <= pixel_info_out(1) AND NOT pixel_info_out(0);
+  endofpacket_shifted   <= pixel_info_out(0) AND NOT pixel_info_out(1);
 -- *****************************************************************************
 -- *                          Component Instantiations                         *
 -- *****************************************************************************
@@ -231,22 +288,57 @@ BEGIN
     y_out             => sad1_y
   );
   
-  sad2_l: entity work.sad
+  --sad2_l: entity work.sad
+  --port map (
+  --  -- inputs
+  --  clk               => clk,
+  --  reset             => reset,
+  --  
+  --  template          => template,
+  --  window_info       => window_data(2),
+  --  valid_in          => window_valid,
+  --  
+  --  -- output
+  --  score_out         => sad2_score,
+  --  valid_out         => sad2_valid,
+  --  x_out             => sad2_x,
+  --  y_out             => sad2_y
+  --);
+  
+  threshold_l: entity work.threshold
+  generic map(
+    THRESHOLD => B"000000000001000000",
+    X_MAX     => LAST_X,
+    Y_MAX     => LAST_Y)
   port map (
-    -- inputs
+  -- Inputs
+    clk                   => clk,
+    reset                 => reset,
+    
+    valid_in              => sad_valid,   
+    scores_in             => sad_scoreInfo,
+
+    -- Outputs
+    x_out                 => threshold_x,
+    y_out                 => threshold_y,
+    valid_out             => threshold_valid); 
+  
+  square_drawer_l: entity work.square_drawer
+  port map (
     clk               => clk,
     reset             => reset,
-    
-    template          => template,
-    window_info       => window_data(2),
-    valid_in          => window_valid,
-    
-    -- output
-    score_out         => sad2_score,
-    valid_out         => sad2_valid,
-    x_out             => sad2_x,
-    y_out             => sad2_y
-  );
+    in_data           => data_shifted,
+    in_startofpacket  => startofpacket_shifted,
+    in_endofpacket    => endofpacket_shifted,
+    in_valid          => valid_shifted,
+    in_xy_valid       => threshold_valid,
+    in_x              => threshold_x,
+    in_y              => threshold_y,
+    out_data          => final_value,
+    out_startofpacket => square_drawer_startofpacket,
+    out_endofpacket   => square_drawer_endofpacket,
+    out_valid         => square_drawer_valid);
+  
   
   
   -- defparam Pixel_Info_Shift_Register.SIZE = WIDTH;  

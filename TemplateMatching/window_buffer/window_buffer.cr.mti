@@ -10,16 +10,18 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling architecture hex_test of test
 ** Warning: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/io_utils.vhd(248): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
-} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/TemplateMatchingTypePckg.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\jonas\source\repos\dspc_project\TemplateMatching\window_buffer\TemplateMatchingTypePckg.vhd}
+} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Loading package MATH_REAL
--- Compiling package TemplateMatchingTypePckg
+-- Loading package TemplateMatchingTypePckg
+-- Compiling entity window_buffer
+-- Compiling architecture arch of window_buffer
 
-} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\jonas\source\repos\dspc_project\TemplateMatching\window_buffer\window_buffer_tb.vhd}
+} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -31,5 +33,14 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity window_buffer_tb
 -- Compiling architecture arch of window_buffer_tb
 -- Loading entity window_buffer
+
+} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/TemplateMatchingTypePckg.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/jonas/source/repos/dspc_project/TemplateMatching/TemplateMatchingTypePckg.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Compiling package TemplateMatchingTypePckg
 
 } {} {}}

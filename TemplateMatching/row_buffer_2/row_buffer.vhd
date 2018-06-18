@@ -39,6 +39,8 @@ begin
   begin
     if rising_edge(clk) then
       out_valid <= '0';
+      out_begin <= '1';
+      
       if reset = '1' then
         data := ImageRow_t_init;
         counter := 0;

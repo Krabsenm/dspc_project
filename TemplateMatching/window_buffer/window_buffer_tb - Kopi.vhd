@@ -32,7 +32,8 @@ architecture arch of window_buffer_tb is
   signal   out_valid : std_logic;
   signal   out_data_0: WindowInfo_t;
   signal   out_data_1: WindowInfo_t;
-
+  signal   out_data_2: WindowInfo_t;
+  
       -- clock
   signal end_sim : std_logic := '0';
   constant clockperiod  : time := 10 ns;  -- clk period time
@@ -60,7 +61,8 @@ begin  -- architecture
 	
   out_data_0 <= out_data(0);
   out_data_1 <= out_data(1);
-
+  out_data_2 <= out_data(2);
+  
   
   -----------------------------
   -- Stimuli Process
@@ -134,6 +136,7 @@ begin  -- architecture
     variable data: integer;
     file videooutfile0: TEXT open write_mode is "ImageOut0.txt";
     file videooutfile1: TEXT open write_mode is "ImageOut1.txt";
+    file videooutfile2: TEXT open write_mode is "ImageOut2.txt";
   begin
     -- Create simulation files    
     --file_open(videooutfile, image_outName);
@@ -163,6 +166,8 @@ begin  -- architecture
               writeline((videooutfile0), line); -- write next text line to file
             when 1 =>
               writeline((videooutfile1), line); -- write next text line to file
+            when 2 =>
+              writeline((videooutfile2), line); -- write next text line to file
             when others =>
               report "Window index larger than 2";
           end case;
@@ -173,6 +178,7 @@ begin  -- architecture
     
     file_close(videooutfile0);  
     file_close(videooutfile1);  
+    file_close(videooutfile2);  
     report "Done writing output file";
     
     wait until out_valid = '0';
