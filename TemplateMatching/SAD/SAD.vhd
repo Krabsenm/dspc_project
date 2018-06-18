@@ -18,8 +18,8 @@ generic(
 
 PORT (
    -- Inputs
-  clk_50MHz            :IN    STD_LOGIC;
-  reset_n              :IN    STD_LOGIC;
+  clk            :IN    STD_LOGIC;
+  reset              :IN    STD_LOGIC;
   
   -- inputs from softcore 
   template             :IN    Window_t;
@@ -56,8 +56,8 @@ BEGIN
   complement_sum_INST: entity work.complement_sum
    port map (
 	  -- Inputs
-      clk_50MHz            => clk_50MHz,
-      reset              => reset_n,
+      clk_50MHz            => clk,
+      reset              => reset,
       -- inputs from softcore 
       template             => template,
       -- inputs from window buffer
@@ -76,8 +76,8 @@ BEGIN
   -----------------------------
   adder_tree_INST: entity work.adder_tree
    port map (
-		clk_50MHz    =>    clk_50MHz,
-		reset        =>    reset_n,
+		clk_50MHz    =>    clk,
+		reset        =>    reset,
 		comp_sum     =>    comp_sum_out,
 		valid_in     =>    comp_sum_valid_out,
 		valid_out    =>    valid_out, 
