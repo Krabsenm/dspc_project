@@ -10,18 +10,6 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling architecture hex_test of test
 ** Warning: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer/io_utils.vhd(248): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
 
-} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/io_utils.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/io_utils.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Compiling package io_utils
--- Compiling package body io_utils
--- Loading package io_utils
--- Compiling entity test
--- Loading package io_utils
--- Compiling architecture hex_test of test
-** Warning: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/io_utils.vhd(248): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
-
 } {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer/row_buffer.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer/row_buffer.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
@@ -34,17 +22,26 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity row_buffer
 -- Compiling architecture arch of row_buffer
 
-} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/row_buffer.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\jonas\source\repos\dspc_project\TemplateMatching\row_buffer_2\row_buffer.vhd}
+} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/io_utils.vhd {2 {vcom -work work -2002 -explicit -stats=none C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/io_utils.vhd
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Compiling package io_utils
+-- Compiling package body io_utils
+-- Loading package io_utils
+-- Compiling entity test
+-- Loading package io_utils
+-- Compiling architecture hex_test of test
+** Warning: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/io_utils.vhd(248): (vcom-1194) FILE declaration was written using VHDL 1987 syntax.
+
+} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer/TemplateMatchingTypePckg.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer/TemplateMatchingTypePckg.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
 -- Loading package NUMERIC_STD
 -- Loading package MATH_REAL
--- Loading package TemplateMatchingTypePckg
--- Loading package io_utils
--- Compiling entity row_buffer
--- Compiling architecture arch of row_buffer
+-- Compiling package TemplateMatchingTypePckg
 
 } {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer/row_buffer_tb.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer/row_buffer_tb.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
@@ -59,7 +56,19 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling architecture Bhv of row_buffer_tb
 -- Loading entity row_buffer
 
-} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer/TemplateMatchingTypePckg.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer/TemplateMatchingTypePckg.vhd
+} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/row_buffer.vhd {1 {vcom -work work -2002 -explicit -stats=none {C:\Users\jonas\source\repos\dspc_project\TemplateMatching\row_buffer_2\row_buffer.vhd}
+Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package MATH_REAL
+-- Loading package TemplateMatchingTypePckg
+-- Loading package io_utils
+-- Compiling entity row_buffer
+-- Compiling architecture arch of row_buffer
+
+} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/TemplateMatchingTypePckg.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/TemplateMatchingTypePckg.vhd
 Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -80,14 +89,5 @@ Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  
 -- Compiling entity row_buffer_tb
 -- Compiling architecture Bhv of row_buffer_tb
 -- Loading entity row_buffer
-
-} {} {}} C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/TemplateMatchingTypePckg.vhd {1 {vcom -work work -2002 -explicit -stats=none C:/Users/jonas/source/repos/dspc_project/TemplateMatching/row_buffer_2/TemplateMatchingTypePckg.vhd
-Model Technology ModelSim - Intel FPGA Edition vcom 10.5b Compiler 2016.10 Oct  5 2016
--- Loading package STANDARD
--- Loading package TEXTIO
--- Loading package std_logic_1164
--- Loading package NUMERIC_STD
--- Loading package MATH_REAL
--- Compiling package TemplateMatchingTypePckg
 
 } {} {}}
