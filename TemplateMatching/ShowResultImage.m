@@ -10,6 +10,8 @@ imshow(img);
 %SaveImgInTextFile(img, 'ImageIn12.txt', '%d'); % Format %d or %x
 
 %% Use orig img for formatting output image
+img = zeros(240,320);
+
 imgEdge = LoadImgFromTextFile(img, 'ImageOut.txt');
 figure;
-imshow(imgEdge);
+imshow(imgEdge,[]);
