@@ -16,6 +16,7 @@ package TemplateMatchingTypePckg is
   constant LAST_X         : natural := IMAGE_WIDTH-TEMPLATE_SIZE; 
   constant LAST_Y         : natural := IMAGE_HEIGHT-TEMPLATE_SIZE;
   constant SHIFTS         : natural := 130; 
+  constant COMPS          : natural := 2;
   
   subtype Pixel_t  is unsigned(PIXEL_SIZE-1 downto 0);
   type ImageRow_t  is array(0 to IMAGE_WIDTH-1) of Pixel_t;
