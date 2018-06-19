@@ -130,6 +130,7 @@ begin  -- architecture Bhv
     
     wait until out_valid = '1';
     
+    -- Checks whether every recieved pixel is correctly loaded into rows
     for i in 0 to image_width-1 loop
       if (i <= 255) then
         assert to_integer(out_data(i)) = i
