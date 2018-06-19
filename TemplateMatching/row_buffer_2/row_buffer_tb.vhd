@@ -29,7 +29,6 @@ architecture Bhv of row_buffer_tb is
   signal   in_valid         : std_logic;
   signal   out_valid        : std_logic;
   signal   out_data         : ImageRow_t;
-  signal   out_begin        : std_logic;
 
     -- clock
   signal end_sim : std_logic := '0';
@@ -49,8 +48,7 @@ begin  -- architecture Bhv
       in_endofpacket   => in_endofpacket,
       in_valid         => in_valid,
       out_valid        => out_valid,
-      out_data         => out_data,
-      out_begin        => out_begin);
+      out_data         => out_data);
 
 	-- clock generation
   clk <= not clk after clockperiod/2 when end_sim = '0' else unaffected; 
@@ -132,10 +130,7 @@ begin  -- architecture Bhv
     
     wait until out_valid = '1';
     
-    assert out_begin = '1'
-      report "out_begin not 1"
-      severity error;
-    
+    -- Checks whether every recieved pixel is correctly loaded into rows
     for i in 0 to image_width-1 loop
       if (i <= 255) then
         assert to_integer(out_data(i)) = i
@@ -151,10 +146,6 @@ begin  -- architecture Bhv
     
     wait until out_valid = '0';
     wait until out_valid = '1';
-    
-    assert out_begin = '0'
-      report "out_begin not 0 on second row"
-      severity error;
     
   
     end_sim <= '1';

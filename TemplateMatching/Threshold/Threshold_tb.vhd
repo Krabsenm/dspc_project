@@ -26,15 +26,15 @@ signal   scores_in     : threshold_data_inputs_t;
   -----------------------------
 signal  x_out         : X_t;
 signal  y_out         : Y_t;
-signal  valid_out     : std_logic := '0'; 
+signal  valid_out     : std_logic   := '0'; 
   
 
   -----------------------------
   -- test bench Signals 
   -----------------------------   
   -- clock
-  signal end_sim : std_logic := '0';
-  constant clockperiod  : time := 10 ns;  -- clk period time
+  signal end_sim        : std_logic := '0';
+  constant clockperiod  : time      := 10 ns;  -- clk period time
 
   
 begin  -- architecture Bhv
@@ -76,14 +76,16 @@ begin  -- architecture Bhv
     wait for clockperiod; -- one clock periode idle before start 
     wait until clk = '1'; -- Align clock
     
+    -- Simulate three output from the SAD module
     scores_in(0) <= ("000000000010000111", 1,1);
     scores_in(1) <= ("000000000001000010", 2,1);
     scores_in(2) <= ("000000100000000001", 3,1);
     valid_in     <= "111";
-    
+
     wait until clk = '0';
     wait until clk = '1';
-    
+      
+    -- Simulate three other output from SAD module
     scores_in(0) <= ("000000000010000111", 1,2);
     scores_in(1) <= ("000000000000000010", 2,2);
     scores_in(2) <= ("000000000000010001", 3,2);
@@ -111,8 +113,9 @@ begin  -- architecture Bhv
     
     wait until valid_out = '1';
     
-    assert (x_out = 2 AND y_out = 0)
-      report "Not good"
+    -- The best output should be the second scores_in(1), which has coordinate (2,2)
+    assert (x_out = 2 AND y_out = 2)
+      report "Wrong coordinate! Expected: (2,2), but got: (" &  integer'image(x_out) & "," & integer'image(y_out) & ")"
       severity error;
   
     wait for clockperiod;

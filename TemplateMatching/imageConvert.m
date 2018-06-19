@@ -3,17 +3,14 @@ clear, close all;
 
 %% Read image and save as ascii hex file
 
-%img = imread('rice.tif');
-%img = imread('test_img2.jpg');
-%img = rgb2gray(img);
+img = imread('naturedogetemplate2.png');
+img = rgb2gray(img); 
 
-img = temp1; 
-
-figure;
-imshow(img, []);
-SaveImgInTextFile(img, 'nature_doge_temp.txt', '%d'); % Format %d or %x
+% figure;
+% imshow(img, []);
+SaveImgInTextFile(img, 'naturedogetemplate2.txt', '%d'); % Format %d or %x
 
 %% Use orig img for formatting output image
-imgEdge = LoadImgFromTextFile(img, 'ImageOut.txt');
+imgEdge = LoadImgFromTextFile(img, 'DogeImageOut.txt');
 figure;
 imshow(imgEdge);
