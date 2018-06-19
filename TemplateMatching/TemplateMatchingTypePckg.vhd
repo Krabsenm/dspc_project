@@ -24,7 +24,7 @@ package TemplateMatchingTypePckg is
   type WindowRow_t is array(0 to TEMPLATE_SIZE-1) of Pixel_t;
   type Window_t    is array(0 to TEMPLATE_SIZE-1) of WindowRow_t;
   
-  type Window16_t    is array(0 to TEMPLATE_SIZE/2-1) of WindowRow_t;
+  type Window16_t  is array(0 to (TEMPLATE_SIZE/2)-1) of WindowRow_t;
   
   
   subtype Score_t  is unsigned(17 downto 0); -- integer range 0 to SCORE_MAX;

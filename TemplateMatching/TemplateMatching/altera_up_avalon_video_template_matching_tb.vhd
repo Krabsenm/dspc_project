@@ -11,9 +11,9 @@ ENTITY altera_up_avalon_video_template_matching_tb IS
   GENERIC (
     image_width :INTEGER    := 320;   -- Image width in pixels
     image_height:INTEGER    := 240;   -- Image height in pixels
-    image_name: string      := "awesomeimage.txt"; -- Contains image as text hex input format
+    image_name: string      := "nature_doge.txt"; -- Contains image as text hex input format
     image_outName: string   := "ImageOut.txt";
-    template_image: string  := "awesometemplate.txt"
+    template_image: string  := "nature_doge_temp.txt"
   );
 END ENTITY;
 
@@ -140,6 +140,9 @@ begin
       
               wait until clk = '1'; --for clockperiod;
               in_startofpacket <= '0';
+            else
+              in_endofpacket <= '1';
+              wait until clk = '1';
             end if;
             
           end loop; -- rows

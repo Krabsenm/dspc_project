@@ -1,373 +1,6 @@
 # Reading C:/intelFPGA/17.1/modelsim_ase/tcl/vsim/pref.tcl
 # OpenFile C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.mpf
 # Loading project window_buffer
-# Compile of window_buffer_tb.vhd failed with 3 errors.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 1 failed with 3 errors.
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 0 failed with no errors.
-vsim -gui work.window_buffer_tb
-# vsim -gui work.window_buffer_tb 
-# Start time: 14:13:06 on Jun 18,2018
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.math_real(body)
-# Loading work.templatematchingtypepckg
-# Loading work.io_utils(body)
-# Loading work.window_buffer_tb(arch)
-# Loading work.window_buffer(arch)
-add wave -position insertpoint sim:/window_buffer_tb/*
-restart
-run
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-add wave -position insertpoint  \
-sim:/window_buffer_tb/window_buffer_INST/out_data
-restart
-restart
-run
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of window_buffer.vhd failed with 5 errors.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 1 failed with 5 errors.
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of window_buffer.vhd failed with 4 errors.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 1 failed with 4 errors.
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 0 failed with no errors.
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 0 failed with no errors.
-restart
-# Loading work.templatematchingtypepckg
-# Loading work.io_utils(body)
-# Loading work.window_buffer_tb(arch)
-# Loading work.window_buffer(arch)
-run
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-restart
-run
-run -all
-# ** Fatal: (vsim-3421) Value 240 is out of range 0 to 239.
-#    Time: 867355 ns  Iteration: 0  Process: /window_buffer_tb/window_buffer_INST/window_buffer File: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-# Fatal error in Process window_buffer at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd line 73
-# 
-# HDL call sequence:
-# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 73 Process window_buffer
-# 
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-# Compile of window_buffer_tb.vhd failed with 4 errors.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 1 failed with 4 errors.
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-restart
-# Loading work.templatematchingtypepckg
-# Loading work.io_utils(body)
-# Loading work.window_buffer_tb(arch)
-# Loading work.window_buffer(arch)
-run -all
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Fatal: (vsim-3421) Value 241 is out of range 0 to 240.
-#    Time: 870555 ns  Iteration: 0  Process: /window_buffer_tb/window_buffer_INST/window_buffer File: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-# Fatal error in Process window_buffer at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd line 73
-# 
-# HDL call sequence:
-# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 73 Process window_buffer
-# 
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-restart
-# Loading work.templatematchingtypepckg
-# Loading work.io_utils(body)
-# Loading work.window_buffer_tb(arch)
-# Loading work.window_buffer(arch)
-restart
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-run -all
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Fatal: (vsim-3421) Value 241 is out of range 0 to 240.
-#    Time: 870555 ns  Iteration: 0  Process: /window_buffer_tb/window_buffer_INST/window_buffer File: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-# Fatal error in Process window_buffer at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd line 73
-# 
-# HDL call sequence:
-# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 73 Process window_buffer
-# 
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-restart
-# Loading work.templatematchingtypepckg
-# Loading work.io_utils(body)
-# Loading work.window_buffer_tb(arch)
-# Loading work.window_buffer(arch)
-run -all
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Fatal: (vsim-3421) Value 241 is out of range 0 to 240.
-#    Time: 870555 ns  Iteration: 0  Process: /window_buffer_tb/window_buffer_INST/window_buffer File: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-# Fatal error in Process window_buffer at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd line 73
-# 
-# HDL call sequence:
-# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 73 Process window_buffer
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 73 Process window_buffer
-# 
-run
-# Cannot continue because of fatal error.
-# HDL call sequence:
-# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 73 Process window_buffer
-# 
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-restart
-# Loading work.templatematchingtypepckg
-# Loading work.io_utils(body)
-# Loading work.window_buffer_tb(arch)
-# Loading work.window_buffer(arch)
-run -all
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Fatal: (vsim-3421) Value 241 is out of range 0 to 240.
-#    Time: 870555 ns  Iteration: 0  Process: /window_buffer_tb/window_buffer_INST/window_buffer File: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-# Fatal error in Process window_buffer at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd line 73
-# 
-# HDL call sequence:
-# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 73 Process window_buffer
-# 
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-restart
-# Loading work.templatematchingtypepckg
-# Loading work.io_utils(body)
-# Loading work.window_buffer_tb(arch)
-# Loading work.window_buffer(arch)
-run -all
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Fatal: (vsim-3421) Value 241 is out of range 0 to 240.
-#    Time: 870555 ns  Iteration: 0  Process: /window_buffer_tb/window_buffer_INST/window_buffer File: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-# Fatal error in Process window_buffer at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd line 73
-# 
-# HDL call sequence:
-# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 73 Process window_buffer
-# 
-add wave -position insertpoint  \
-sim:/window_buffer_tb/window_buffer_INST/x_counter \
-sim:/window_buffer_tb/window_buffer_INST/y_counter \
-sim:/window_buffer_tb/window_buffer_INST/row_counter
-restart
-run -all
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Fatal: (vsim-3421) Value 241 is out of range 0 to 240.
-#    Time: 870555 ns  Iteration: 0  Process: /window_buffer_tb/window_buffer_INST/window_buffer File: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-# Fatal error in Process window_buffer at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd line 73
-# 
-# HDL call sequence:
-# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 73 Process window_buffer
-# 
-# WARNING: No extended dataflow license exists
-# ValueMonitorTimeChange: wlfDrawStringValuesOverTime failed (25): checkArgs: WlfValueId has no logfile info.
-# 
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# ValueMonitorTimeChange: wlfDrawStringValuesOverTime failed (25): checkArgs: WlfValueId has no logfile info.
-# 
-# ValueMonitorTimeChange: wlfDrawStringValuesOverTime failed (25): checkArgs: WlfValueId has no logfile info.
-# 
-# ValueMonitorTimeChange: wlfDrawStringValuesOverTime failed (25): checkArgs: WlfValueId has no logfile info.
-# 
-# ValueMonitorTimeChange: wlfDrawStringValuesOverTime failed (25): checkArgs: WlfValueId has no logfile info.
-# 
-# ValueMonitorTimeChange: wlfDrawStringValuesOverTime failed (25): checkArgs: WlfValueId has no logfile info.
-# 
-# ValueMonitorTimeChange: wlfDrawStringValuesOverTime failed (25): checkArgs: WlfValueId has no logfile info.
-# 
-# ValueMonitorTimeChange: wlfDrawStringValuesOverTime failed (25): checkArgs: WlfValueId has no logfile info.
-# 
-add wave -position insertpoint  \
-sim:/window_buffer_tb/window_buffer_INST/window_buffer_states
-restart
-run -all
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Fatal: (vsim-3421) Value 241 is out of range 0 to 240.
-#    Time: 870555 ns  Iteration: 0  Process: /window_buffer_tb/window_buffer_INST/window_buffer File: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-# Fatal error in Process window_buffer at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd line 73
-# 
-# HDL call sequence:
-# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 73 Process window_buffer
-# 
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-restart
-# Loading work.templatematchingtypepckg
-# Loading work.io_utils(body)
-# Loading work.window_buffer_tb(arch)
-# Loading work.window_buffer(arch)
-run -all
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Fatal: (vsim-3471) Slice range (289 to 320) does not belong to the prefix index range (0 to 319).
-#    Time: 867365 ns  Iteration: 0  Process: /window_buffer_tb/window_buffer_INST/window_buffer File: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-# Fatal error in ForLoop loop at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd line 88
-# 
-# HDL call sequence:
-# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 88 ForLoop loop
-# 
-# WARNING: No extended dataflow license exists
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-restart
-# Loading work.templatematchingtypepckg
-# Loading work.io_utils(body)
-# Loading work.window_buffer_tb(arch)
-# Loading work.window_buffer(arch)
-run -all
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Done writing output file
-#    Time: 867365 ns  Iteration: 1  Instance: /window_buffer_tb
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-restart
-# Loading work.templatematchingtypepckg
-# Loading work.io_utils(body)
-# Loading work.window_buffer_tb(arch)
-# Loading work.window_buffer(arch)
-run
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-run -all
-# ** Note: Done writing output file
-#    Time: 867365 ns  Iteration: 1  Instance: /window_buffer_tb
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 0 failed with no errors.
-# Compile of window_buffer_tb.vhd failed with 6 errors.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 1 failed with 6 errors.
-# Compile of window_buffer_tb.vhd failed with 3 errors.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 1 failed with 3 errors.
-# Compile of window_buffer_tb.vhd failed with 3 errors.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 1 failed with 3 errors.
-# Compile of window_buffer_tb.vhd failed with 3 errors.
-# Compile of window_buffer.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 1 failed with 3 errors.
 # Compile of window_buffer_tb.vhd was successful.
 # Compile of window_buffer.vhd was successful.
 # Compile of io_utils.vhd was successful with warnings.
@@ -384,10 +17,8 @@ run -all
 # Compile of TemplateMatchingTypePckg.vhd was successful.
 # 4 compiles, 0 failed with no errors.
 vsim -gui work.window_buffer_tb
-# End time: 15:03:02 on Jun 18,2018, Elapsed time: 0:49:56
-# Errors: 21, Warnings: 2
 # vsim -gui work.window_buffer_tb 
-# Start time: 15:03:03 on Jun 18,2018
+# Start time: 11:20:12 on Jun 19,2018
 # Loading std.standard
 # Loading std.textio(body)
 # Loading ieee.std_logic_1164(body)
@@ -397,35 +28,55 @@ vsim -gui work.window_buffer_tb
 # Loading work.io_utils(body)
 # Loading work.window_buffer_tb(arch)
 # Loading work.window_buffer(arch)
+add wave -position insertpoint sim:/window_buffer_tb/*
+# ** Warning: (vsim-WLF-5000) WLF file currently in use: vsim.wlf
+#           File in use by: jonas  Hostname: JONAS-ASUS-X550  ProcessID: 2852
+#           Attempting to use alternate WLF file "./wlft20t1r1".
+# ** Warning: (vsim-WLF-5001) Could not open WLF file: vsim.wlf
+#           Using alternate file: ./wlft20t1r1
 add wave -position insertpoint  \
-sim:/window_buffer_tb/window_buffer_INST/window_buffer_states \
+sim:/window_buffer_tb/window_buffer_INST/state \
 sim:/window_buffer_tb/window_buffer_INST/x_counter \
 sim:/window_buffer_tb/window_buffer_INST/y_counter \
-sim:/window_buffer_tb/window_buffer_INST/row_counter
-add wave -position insertpoint  \
-sim:/window_buffer_tb/window_buffer_INST/out_data
-add wave -position insertpoint sim:/window_buffer_tb/*
+sim:/window_buffer_tb/window_buffer_INST/row_counter \
+sim:/window_buffer_tb/window_buffer_INST/windows_sent
 run -all
 # ** Note: Reading file
 #    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
 # ** Note: Starting to read file
 #    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
 # ** Note: Done writing output file
-#    Time: 867365 ns  Iteration: 1  Instance: /window_buffer_tb
-# WARNING: No extended dataflow license exists
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd failed with 4 errors.
-# Compile of io_utils.vhd was successful with warnings.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# 4 compiles, 1 failed with 4 errors.
+#    Time: 198565 ns  Iteration: 1  Instance: /window_buffer_tb
+# ** Fatal: (vsim-3421) Value 2 is out of range 0 to 1.
+#    Time: 198575 ns  Iteration: 0  Process: /window_buffer_tb/window_buffer_INST/window_buffer File: C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
+# Fatal error in Process window_buffer at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd line 90
+# 
+# HDL call sequence:
+# Stopped at C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd 90 Process window_buffer
+# 
 # Compile of window_buffer_tb.vhd was successful.
 # Compile of window_buffer.vhd was successful.
 # Compile of io_utils.vhd was successful with warnings.
 # Compile of TemplateMatchingTypePckg.vhd was successful.
 # 4 compiles, 0 failed with no errors.
-# Load canceled
+# Compile of window_buffer_tb.vhd was successful.
+# Compile of window_buffer.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.templatematchingtypepckg
+# Loading work.io_utils(body)
+# Loading work.window_buffer_tb(arch)
+# Loading work.window_buffer(arch)
+run
+# ** Note: Reading file
+#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
+# ** Note: Starting to read file
+#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
+run -all
+# ** Note: Done writing output file
+#    Time: 198565 ns  Iteration: 1  Instance: /window_buffer_tb
 # Compile of window_buffer_tb.vhd was successful.
 # Compile of window_buffer.vhd was successful.
 # Compile of io_utils.vhd was successful with warnings.
@@ -442,6 +93,49 @@ run -all
 # ** Note: Starting to read file
 #    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
 # ** Note: Done writing output file
-#    Time: 867365 ns  Iteration: 1  Instance: /window_buffer_tb
-# End time: 15:25:00 on Jun 18,2018, Elapsed time: 0:21:57
-# Errors: 3, Warnings: 1
+#    Time: 198565 ns  Iteration: 1  Instance: /window_buffer_tb
+# Compile of window_buffer_tb.vhd was successful.
+# Compile of window_buffer.vhd failed with 2 errors.
+# Compile of io_utils.vhd was successful with warnings.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# 4 compiles, 1 failed with 2 errors.
+# Compile of window_buffer_tb.vhd was successful.
+# Compile of window_buffer.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of window_buffer_tb.vhd was successful.
+# Compile of window_buffer.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.templatematchingtypepckg
+# Loading work.io_utils(body)
+# Loading work.window_buffer_tb(arch)
+# Loading work.window_buffer(arch)
+run -all
+# ** Note: Reading file
+#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
+# ** Note: Starting to read file
+#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
+# ** Note: Done writing output file
+#    Time: 198565 ns  Iteration: 1  Instance: /window_buffer_tb
+# Compile of window_buffer_tb.vhd was successful.
+# Compile of window_buffer.vhd was successful.
+# Compile of io_utils.vhd was successful with warnings.
+# Compile of TemplateMatchingTypePckg.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart
+# Loading work.templatematchingtypepckg
+# Loading work.io_utils(body)
+# Loading work.window_buffer_tb(arch)
+# Loading work.window_buffer(arch)
+run
+# ** Note: Reading file
+#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
+# ** Note: Starting to read file
+#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
+run -all
+# ** Note: Done writing output file
+#    Time: 198565 ns  Iteration: 1  Instance: /window_buffer_tb

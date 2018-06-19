@@ -120,20 +120,12 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
 
 BEGIN
   template <= in_template;
-  sad0_scoreInfo.score <= sad0_score;
-  sad0_scoreInfo.x     <= sad0_x;
-  sad0_scoreInfo.y     <= sad0_y;
+  sad_scoreInfo.score <= sad_score;
+  sad_scoreInfo.x     <= sad_x;
+  sad_scoreInfo.y     <= sad_y;
   
-  sad1_scoreInfo.score <= sad1_score;
-  sad1_scoreInfo.x     <= sad1_x;
-  sad1_scoreInfo.y     <= sad1_y;
-  
-  --sad2_scoreInfo.score <= sad2_score;
-  --sad2_scoreInfo.x     <= sad2_x;
-  --sad2_scoreInfo.y     <= sad2_y;
-  
-  sad_valid            <= sad0_valid & sad1_valid;-- & sad2_valid;
-  sad_scoreInfo        <= sad0_scoreInfo & sad1_scoreInfo;-- & sad2_scoreInfo;
+  sad_valid            <= sad_valid;
+  sad_scoreInfo        <= sad_scoreInfo;
   
 -- *****************************************************************************
 -- *                         Finite State Machine(s)                           *
@@ -254,7 +246,7 @@ BEGIN
     out_valid         => window_valid
   );
 
-  sad0_l: entity work.sad
+  sad_l: entity work.sad
   port map (
     -- inputs
     clk               => clk,
@@ -265,45 +257,11 @@ BEGIN
     valid_in          => window_valid,
     
     -- output
-    score_out         => sad0_score,
-    valid_out         => sad0_valid,
-    x_out             => sad0_x,
-    y_out             => sad0_y
+    score_out         => sad_score,
+    valid_out         => sad_valid,
+    x_out             => sad_x,
+    y_out             => sad_y
   );
-  
-  sad1_l: entity work.sad
-  port map (
-    -- inputs
-    clk               => clk,
-    reset             => reset,
-    
-    template          => template,
-    window_info       => window_data(1),
-    valid_in          => window_valid,
-    
-    -- output
-    score_out         => sad1_score,
-    valid_out         => sad1_valid,
-    x_out             => sad1_x,
-    y_out             => sad1_y
-  );
-  
-  --sad2_l: entity work.sad
-  --port map (
-  --  -- inputs
-  --  clk               => clk,
-  --  reset             => reset,
-  --  
-  --  template          => template,
-  --  window_info       => window_data(2),
-  --  valid_in          => window_valid,
-  --  
-  --  -- output
-  --  score_out         => sad2_score,
-  --  valid_out         => sad2_valid,
-  --  x_out             => sad2_x,
-  --  y_out             => sad2_y
-  --);
   
   threshold_l: entity work.threshold
   generic map(
@@ -339,12 +297,10 @@ BEGIN
     out_endofpacket   => square_drawer_endofpacket,
     out_valid         => square_drawer_valid);
   
-  
-  
   -- defparam Pixel_Info_Shift_Register.SIZE = WIDTH;  
   Pixel_Info_Shift_Register : entity work.altera_up_edge_detection_pixel_info_shift_register 
   GENERIC MAP ( 
-    SIZE    => (WIDTH * 5) + 28
+    SIZE    => SHIFTS
   )
   PORT MAP (
     -- Inputs
@@ -359,7 +315,7 @@ BEGIN
 
   Pixel_Data_Shift_Register : entity work.altera_up_edge_detection_data_shift_register
       generic map (
-                   SIZE => (WIDTH * 5) + 28,
+                   SIZE => SHIFTS,
                    DW   => 8
   )
       port map (
