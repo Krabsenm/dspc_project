@@ -21,9 +21,9 @@ V>[0j93z75z:8XZ]2=YZgh1
 Z5 OV;C;10.5b;63
 32
 b1
-Z6 !s110 1529421955
+Z6 !s110 1529485581
 !i10b 1
-Z7 !s108 1529421955.000000
+Z7 !s108 1529485581.000000
 Z8 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/io_utils.vhd|
 Z9 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/io_utils.vhd|
 !i113 1
@@ -61,9 +61,9 @@ VD<W;h`@2LA4JdOz^fH><T1
 !s100 FLBS3T27m_=X;PY9WGCJg0
 R5
 32
-R6
+Z18 !s110 1529485580
 !i10b 1
-R7
+Z19 !s108 1529485580.000000
 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/TemplateMatchingTypePckg.vhd|
 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/TemplateMatchingTypePckg.vhd|
 !i113 1
@@ -89,13 +89,13 @@ R9
 R10
 R11
 Ahex_test
-Z18 DEx4 work 4 test 0 22 24Z]RAB]i?QLoAkX7^ZBf1
+Z20 DEx4 work 4 test 0 22 24Z]RAB]i?QLoAkX7^ZBf1
 R12
 R0
 l245
 L244
-Z19 V:Y[ZDk6oJY?h7cQ@_4eoG1
-Z20 !s100 azBGYL6PhJ`:QGLMc6;4J2
+Z21 V:Y[ZDk6oJY?h7cQ@_4eoG1
+Z22 !s100 azBGYL6PhJ`:QGLMc6;4J2
 R5
 32
 R6
@@ -107,79 +107,79 @@ R9
 R10
 R11
 Ewindow_buffer
-Z21 w1529327883
-Z22 DPx4 work 24 templatematchingtypepckg 0 22 D<W;h`@2LA4JdOz^fH><T1
+Z23 w1529485562
+Z24 DPx4 work 24 templatematchingtypepckg 0 22 D<W;h`@2LA4JdOz^fH><T1
 R15
 R16
 R0
 R17
 R2
-Z23 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-Z24 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
+Z25 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
+Z26 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
 l0
-L9
-V]>J0`dnk55J5YnCbOOBjB2
-!s100 GO5aj85^XGn_c:naVb]>j2
+L13
+VWl[QAXI7lfC=9JB_k;WnH1
+!s100 ?:]D^Pj5Hl:k4GX@QEa_;0
 R5
 32
-R6
+R18
 !i10b 1
-R7
-Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
-Z26 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
+R19
+Z27 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
+Z28 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
 !i113 1
 R10
 R11
 Aarch
-R22
+R24
 R15
 R16
 R0
 R17
-Z27 DEx4 work 13 window_buffer 0 22 ]>J0`dnk55J5YnCbOOBjB2
-l38
-L27
-V`mE8`CLRPT_H:a8A5haeT3
-!s100 TMR`U?]NGQ=N60l9V2ORh1
+Z29 DEx4 work 13 window_buffer 0 22 Wl[QAXI7lfC=9JB_k;WnH1
+l39
+L28
+VXIQf?2R?P:`fFS<ac_D[n1
+!s100 i[VV4DeliFnb;ia<D:3@63
 R5
 32
-R6
+R18
 !i10b 1
-R7
-R25
-R26
+R19
+R27
+R28
 !i113 1
 R10
 R11
 Ewindow_buffer_tb
-Z28 w1529421720
+Z30 w1529484919
 R12
-R22
+R24
 R15
 R16
 R0
 R17
 R2
-Z29 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
-Z30 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
+Z31 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
+Z32 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
 l0
 L12
 V[2>4Z[>2`Mfj=z@HV5Jc_1
 !s100 D3nzFMhc6Hch1JbceS[>R1
 R5
 32
-R6
+R18
 !i10b 1
-R7
-Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
-Z32 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
+R19
+Z33 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
+Z34 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
 !i113 1
 R10
 R11
 Aarch
-R27
+R29
 R12
-R22
+R24
 R15
 R16
 R0
@@ -187,15 +187,15 @@ R17
 DEx4 work 16 window_buffer_tb 0 22 [2>4Z[>2`Mfj=z@HV5Jc_1
 l40
 L22
-V]WXJ97CGC]UCgQVPXBzfb0
-!s100 P8To[^V57?[P@oa415zEb2
+VPDlldXi9>_azb2cA[nMjM1
+!s100 eB>;5lXzD>b?MHON86L]a0
 R5
 32
-R6
+R18
 !i10b 1
-R7
-R31
-R32
+R19
+R33
+R34
 !i113 1
 R10
 R11

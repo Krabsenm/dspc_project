@@ -48,7 +48,6 @@ begin  -- architecture
       reset     => reset,
       in_data   => in_data,
       in_valid  => in_valid,
-      in_begin  => in_begin,
       out_data  => out_data,
       out_valid => out_valid);
 
