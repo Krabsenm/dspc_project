@@ -30,8 +30,8 @@ architecture arch of window_buffer is
   type Row_collector_t is array(0 to TEMPLATE_SIZE - 1) of ImageRow_t;
   signal row_collector : Row_collector_t;
   
-  TYPE state_type IS (load_line, shift_lines, snip_window);
-  Signal state : state_type := load_line;
+  TYPE state_type IS (load_lines, shift_lines, snip_window);
+  Signal state : state_type := load_lines;
   
   signal x_counter : X_t;
   signal y_counter : Y_t;
@@ -48,18 +48,17 @@ begin
         row_counter <= 0;
         x_counter   <= 0;
         y_counter   <= 0;
-        state <= load_line;
+        state <= load_lines;
       
       else
         case state is
-          when load_line => -- Save the amount of rows needed for a window
+          when load_lines => -- Save the amount of rows needed for a window
           
             out_valid <= '0';
           
             if in_valid = '1' then -- Wait for row    
               row_collector(row_counter) <= in_data;
               row_counter <= row_counter + 1;
-              y_counter <= y_counter + 1;
               
               -- If we have the rows needed for a window, go to snipping state
               if row_counter >= TEMPLATE_SIZE-1 then
@@ -110,12 +109,12 @@ begin
               if y_counter >= (IMAGE_HEIGHT - TEMPLATE_SIZE) then
                 row_counter <= 0;
                 y_counter   <= 0;  
-                state <= load_line;
+                state <= load_lines;
               end if;
             end if;
           
           when others =>
-            state <= load_line;
+            state <= load_lines;
         end case;
       end if;
     end if;

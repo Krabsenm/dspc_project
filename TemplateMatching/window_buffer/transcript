@@ -2,76 +2,15 @@
 # OpenFile C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_ms.mpf
 # Loading project window_buffer_ms
 # Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd failed with 2 errors.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 1 failed with 2 errors.
-# Compile of window_buffer_tb.vhd failed with 2 errors.
-# Compile of window_buffer.vhd was successful.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 1 failed with 2 errors.
-# Compile of window_buffer_tb.vhd failed with 2 errors.
-# Compile of window_buffer.vhd was successful.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 1 failed with 2 errors.
-# Compile of window_buffer_tb.vhd failed with 2 errors.
-# Compile of window_buffer.vhd was successful.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 1 failed with 2 errors.
-# Compile of window_buffer_tb.vhd was successful.
 # Compile of window_buffer.vhd was successful.
 # Compile of TemplateMatchingTypePckg.vhd was successful.
 # Compile of io_utils.vhd was successful with warnings.
 # 4 compiles, 0 failed with no errors.
-# Compile of window_buffer_tb.vhd was successful.
+# Compile of window_buffer_tb.vhd failed with 4 errors.
 # Compile of window_buffer.vhd was successful.
 # Compile of TemplateMatchingTypePckg.vhd was successful.
 # Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 0 failed with no errors.
-vsim -gui work.window_buffer_tb
-# vsim -gui work.window_buffer_tb 
-# Start time: 10:55:32 on Jun 20,2018
-# Loading std.standard
-# Loading std.textio(body)
-# Loading ieee.std_logic_1164(body)
-# Loading ieee.numeric_std(body)
-# Loading ieee.math_real(body)
-# Loading work.templatematchingtypepckg
-# Loading work.io_utils(body)
-# Loading work.window_buffer_tb(arch)
-# Loading work.window_buffer(arch)
-add wave -position insertpoint sim:/window_buffer_tb/*
-add wave -position insertpoint  \
-sim:/window_buffer_tb/window_buffer_INST/window_buffer_states
-run -all
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-restart
-run
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-run
-run
-run
-run
-run
-run
-add wave -position insertpoint  \
-sim:/window_buffer_tb/window_buffer_INST/out_data
-restart
-run
-# ** Note: Reading file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-# ** Note: Starting to read file
-#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
-run
+# 4 compiles, 1 failed with 4 errors.
 # Compile of window_buffer_tb.vhd was successful.
 # Compile of window_buffer.vhd was successful.
 # Compile of TemplateMatchingTypePckg.vhd was successful.

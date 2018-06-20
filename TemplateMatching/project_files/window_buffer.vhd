@@ -59,7 +59,6 @@ begin
             if in_valid = '1' then -- Wait for row    
               row_collector(row_counter) <= in_data;
               row_counter <= row_counter + 1;
-              y_counter <= y_counter + 1;
               
               -- If we have the rows needed for a window, go to snipping state
               if row_counter >= TEMPLATE_SIZE-1 then
