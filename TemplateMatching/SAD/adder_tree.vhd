@@ -133,7 +133,7 @@ begin
 			end if; 
 			
 			-- set valid_out high when input have propagated through the pipeline
-			if pipe_delay_out = 10	 then  
+			if pipe_delay_out = 11	 then  
 				valid_out <= '1';
 			else
 				pipe_delay_out <= pipe_delay_out + 1; 
