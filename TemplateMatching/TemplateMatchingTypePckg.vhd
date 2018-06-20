@@ -76,8 +76,10 @@ package TemplateMatchingTypePckg is
   constant ImageRow_t_init   : ImageRow_t   := (others => Pixel_t_init);
   constant WindowRow_t_init  : WindowRow_t  := (others => Pixel_t_init);
   constant Window_t_init     : Window_t     := (others => WindowRow_t_init);
+  constant Window16_t_init     : Window16_t     := (others => WindowRow_t_init);
   constant WindowInfo_t_init : WindowInfo_t := (window => Window_t_init, x => 0, y => 0);
-
+  constant WindowInfo16_t_init : WindowInfo16_t := (window => Window16_t_init, x => 0, y => 0);
+  
 
 
   
@@ -85,6 +87,8 @@ package TemplateMatchingTypePckg is
   constant PixelC_t_init      : PixelC_t      := (others => '0');
   constant WindowRowC_t_init  : WindowRowC_t  := (others => PixelC_t_init);
   constant WindowC_t_init     : WindowC_t     := (others => WindowRowC_t_init);
+  constant WindowC16_t_init     : WindowC16_t     := (others => WindowRowC_t_init);
   constant WindowInfoC_t_init : WindowInfoC_t := (window => WindowC_t_init, x => 0, y => 0);
+  constant WindowInfoC16_t_init : WindowInfoC16_t := (window => WindowC16_t_init, x => 0, y => 0);
   
 end package;
