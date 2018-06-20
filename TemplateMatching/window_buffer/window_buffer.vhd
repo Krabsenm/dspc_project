@@ -14,7 +14,6 @@ entity window_buffer is
 
     in_data           : in    ImageRow_t;
     in_valid          : in    std_logic;
-    in_begin          : in    std_logic;
 
     -- Bidirectional
 

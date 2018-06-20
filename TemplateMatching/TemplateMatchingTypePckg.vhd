@@ -12,10 +12,11 @@ package TemplateMatchingTypePckg is
   constant PIXEL_SIZE     : natural := 8;
   constant TEMPLATE_SIZE  : natural := 32;
   constant SCORE_MAX      : natural := TEMPLATE_SIZE*TEMPLATE_SIZE*(2**(PIXEL_SIZE));
-  constant NUM_SAD        : natural := 2;
+  constant NUM_SAD        : natural := 1;
   constant LAST_X         : natural := IMAGE_WIDTH-TEMPLATE_SIZE; 
   constant LAST_Y         : natural := IMAGE_HEIGHT-TEMPLATE_SIZE;
-  constant SHIFTS         : natural := 130; 
+  constant SHIFTS         : natural := 350; 
+  constant COMPS          : natural := 2;
   
   subtype Pixel_t  is unsigned(PIXEL_SIZE-1 downto 0);
   type ImageRow_t  is array(0 to IMAGE_WIDTH-1) of Pixel_t;
@@ -23,7 +24,7 @@ package TemplateMatchingTypePckg is
   type WindowRow_t is array(0 to TEMPLATE_SIZE-1) of Pixel_t;
   type Window_t    is array(0 to TEMPLATE_SIZE-1) of WindowRow_t;
   
-  type Window16_t    is array(0 to TEMPLATE_SIZE/2-1) of WindowRow_t;
+  type Window16_t  is array(0 to (TEMPLATE_SIZE/2)-1) of WindowRow_t;
   
   
   subtype Score_t  is unsigned(17 downto 0); -- integer range 0 to SCORE_MAX;

@@ -27,7 +27,7 @@ PORT (
 
   bypass             :IN    STD_LOGIC;
 
-  in_template        :IN    Window_t; -- remove????  
+  in_template        :IN    Window_t; -- Load from RAM?
   -- Bidirectional
 
   -- Outputs
@@ -57,7 +57,6 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
   -- Row buffer
   signal row_valid            :std_logic;  
   signal row_data             :ImageRow_t; 
-  signal row_begin            :std_logic;  
   
   -- Window buffer
   signal window_data          :window_buffer_data_output_t;
@@ -65,25 +64,13 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
   
   -- SADs
   signal template             :Window_t;
-  signal sad0_score           :Score_t;
-  signal sad0_valid           :std_logic;
-  signal sad0_x               :X_t;
-  signal sad0_y               :Y_t;
-  signal sad1_score           :Score_t;
-  signal sad1_valid           :std_logic;
-  signal sad1_x               :X_t;
-  signal sad1_y               :Y_t;
-  --signal sad2_score           :Score_t;
-  --signal sad2_valid           :std_logic;
-  --signal sad2_x               :X_t;
-  --signal sad2_y               :Y_t;
-  
-  signal sad0_scoreInfo       :ScoreInfo_t;
-  signal sad1_scoreInfo       :ScoreInfo_t;
-  --signal sad2_scoreInfo       :ScoreInfo_t;
-  
+  signal sad_score           :Score_t;
+  signal sad_valid           :std_logic;
+  signal sad_x               :X_t;
+  signal sad_y               :Y_t;
+
   -- Threshold
-  signal sad_valid            :std_logic_vector(NUM_SAD-1 downto 0);
+  signal sad_valids            :std_logic_vector(NUM_SAD-1 downto 0);
   signal sad_scoreInfo        :threshold_data_inputs_t;
   signal threshold_x          :X_t;
   signal threshold_y          :Y_t;
@@ -120,20 +107,12 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
 
 BEGIN
   template <= in_template;
-  sad0_scoreInfo.score <= sad0_score;
-  sad0_scoreInfo.x     <= sad0_x;
-  sad0_scoreInfo.y     <= sad0_y;
+  sad_scoreInfo(0).score <= sad_score;
+  sad_scoreInfo(0).x     <= sad_x;
+  sad_scoreInfo(0).y     <= sad_y;
   
-  sad1_scoreInfo.score <= sad1_score;
-  sad1_scoreInfo.x     <= sad1_x;
-  sad1_scoreInfo.y     <= sad1_y;
-  
-  --sad2_scoreInfo.score <= sad2_score;
-  --sad2_scoreInfo.x     <= sad2_x;
-  --sad2_scoreInfo.y     <= sad2_y;
-  
-  sad_valid            <= sad0_valid & sad1_valid;-- & sad2_valid;
-  sad_scoreInfo        <= sad0_scoreInfo & sad1_scoreInfo;-- & sad2_scoreInfo;
+  sad_valids(0)            <= sad_valid;
+
   
 -- *****************************************************************************
 -- *                         Finite State Machine(s)                           *
@@ -144,7 +123,7 @@ BEGIN
 -- *                             Sequential Logic                              *
 -- *****************************************************************************
 
-  -- Output Registers ??????????????
+  -- Output Registers
   PROCESS (clk)
   BEGIN
     IF clk'EVENT AND clk = '1' THEN
@@ -235,8 +214,7 @@ BEGIN
     -- Outputs
     in_ready          => in_ready,
     out_valid         => row_valid,
-    out_data          => row_data,
-    out_begin         => row_begin
+    out_data          => row_data
   );
   
   window_buffer_l: entity work.window_buffer
@@ -247,14 +225,13 @@ BEGIN
 
     in_data           => row_data,
     in_valid          => row_valid,
-    in_begin          => row_begin,
 
     -- Outputs
     out_data          => window_data,
     out_valid         => window_valid
   );
 
-  sad0_l: entity work.sad
+  sad_l: entity work.sad
   port map (
     -- inputs
     clk               => clk,
@@ -265,45 +242,11 @@ BEGIN
     valid_in          => window_valid,
     
     -- output
-    score_out         => sad0_score,
-    valid_out         => sad0_valid,
-    x_out             => sad0_x,
-    y_out             => sad0_y
+    score_out         => sad_score,
+    valid_out         => sad_valid,
+    x_out             => sad_x,
+    y_out             => sad_y
   );
-  
-  sad1_l: entity work.sad
-  port map (
-    -- inputs
-    clk               => clk,
-    reset             => reset,
-    
-    template          => template,
-    window_info       => window_data(1),
-    valid_in          => window_valid,
-    
-    -- output
-    score_out         => sad1_score,
-    valid_out         => sad1_valid,
-    x_out             => sad1_x,
-    y_out             => sad1_y
-  );
-  
-  --sad2_l: entity work.sad
-  --port map (
-  --  -- inputs
-  --  clk               => clk,
-  --  reset             => reset,
-  --  
-  --  template          => template,
-  --  window_info       => window_data(2),
-  --  valid_in          => window_valid,
-  --  
-  --  -- output
-  --  score_out         => sad2_score,
-  --  valid_out         => sad2_valid,
-  --  x_out             => sad2_x,
-  --  y_out             => sad2_y
-  --);
   
   threshold_l: entity work.threshold
   generic map(
@@ -315,7 +258,7 @@ BEGIN
     clk                   => clk,
     reset                 => reset,
     
-    valid_in              => sad_valid,   
+    valid_in              => sad_valids,   
     scores_in             => sad_scoreInfo,
 
     -- Outputs
@@ -339,12 +282,10 @@ BEGIN
     out_endofpacket   => square_drawer_endofpacket,
     out_valid         => square_drawer_valid);
   
-  
-  
   -- defparam Pixel_Info_Shift_Register.SIZE = WIDTH;  
   Pixel_Info_Shift_Register : entity work.altera_up_edge_detection_pixel_info_shift_register 
   GENERIC MAP ( 
-    SIZE    => (WIDTH * 5) + 28
+    SIZE    => SHIFTS
   )
   PORT MAP (
     -- Inputs
@@ -359,7 +300,7 @@ BEGIN
 
   Pixel_Data_Shift_Register : entity work.altera_up_edge_detection_data_shift_register
       generic map (
-                   SIZE => (WIDTH * 5) + 28,
+                   SIZE => SHIFTS,
                    DW   => 8
   )
       port map (

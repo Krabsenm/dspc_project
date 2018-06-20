@@ -59,7 +59,6 @@ begin  -- architecture
   reset <= '1', '0' after 125 ns;
 	
   out_data_0 <= out_data(0);
-  out_data_1 <= out_data(1);
 
   
   -----------------------------
@@ -132,8 +131,7 @@ begin  -- architecture
   monitor : process
     variable line: LINE;
     variable data: integer;
-    file videooutfile0: TEXT open write_mode is "ImageOut0.txt";
-    file videooutfile1: TEXT open write_mode is "ImageOut1.txt";
+    file videooutfile0: TEXT open write_mode is "ImageOut.txt";
   begin
     -- Create simulation files    
     --file_open(videooutfile, image_outName);
@@ -158,21 +156,13 @@ begin  -- architecture
           data := to_integer(out_data(win).window(row)(pixel));
           write(line, data, right, 0, decimal); -- convert to decimal numbers
           
-          case win is
-            when 0 =>
-              writeline((videooutfile0), line); -- write next text line to file
-            when 1 =>
-              writeline((videooutfile1), line); -- write next text line to file
-            when others =>
-              report "Window index larger than 2";
-          end case;
+          writeline((videooutfile0), line); -- write next text line to file
         end loop;
       end loop;
     end loop;
     
     
     file_close(videooutfile0);  
-    file_close(videooutfile1);  
     report "Done writing output file";
     
     wait until out_valid = '0';
