@@ -12,8 +12,8 @@ Pio_utils
 Z0 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z1 w1529224364
 Z2 dC:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer
-Z3 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/io_utils.vhd
-Z4 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/io_utils.vhd
+Z3 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/io_utils.vhd
+Z4 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/io_utils.vhd
 l0
 L11
 V>[0j93z75z:8XZ]2=YZgh1
@@ -21,11 +21,11 @@ V>[0j93z75z:8XZ]2=YZgh1
 Z5 OV;C;10.5b;63
 32
 b1
-Z6 !s110 1529400555
+Z6 !s110 1529421955
 !i10b 1
-Z7 !s108 1529400555.000000
-Z8 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/io_utils.vhd|
-Z9 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/io_utils.vhd|
+Z7 !s108 1529421955.000000
+Z8 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/io_utils.vhd|
+Z9 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/io_utils.vhd|
 !i113 1
 Z10 o-work work -2002 -explicit
 Z11 tExplicit 1 CvgOpt 0
@@ -34,8 +34,8 @@ Z12 DPx4 work 8 io_utils 0 22 >[0j93z75z:8XZ]2=YZgh1
 R0
 l0
 L42
-V>W@2C1gB@9]iAQL0:ajbT0
-!s100 eDHB5K3Rmah=nTURXn]od0
+Z13 V>W@2C1gB@9]iAQL0:ajbT0
+Z14 !s100 eDHB5K3Rmah=nTURXn]od0
 R5
 32
 R6
@@ -47,18 +47,18 @@ R9
 R10
 R11
 Ptemplatematchingtypepckg
-Z13 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
-Z14 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z15 DPx4 ieee 9 math_real 0 22 Sk6CSihbPL<f[^Shm]=KX0
+Z16 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
 R0
-Z15 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
-w1529398977
+Z17 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+w1529421227
 R2
 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/TemplateMatchingTypePckg.vhd
 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/TemplateMatchingTypePckg.vhd
 l0
 L8
-VXgW5L;o<7n]B1kFOWA35Q3
-!s100 z87mSBVbfac4dQ`N`SH_l1
+VD<W;h`@2LA4JdOz^fH><T1
+!s100 FLBS3T27m_=X;PY9WGCJg0
 R5
 32
 R6
@@ -89,13 +89,13 @@ R9
 R10
 R11
 Ahex_test
-DEx4 work 4 test 0 22 24Z]RAB]i?QLoAkX7^ZBf1
+Z18 DEx4 work 4 test 0 22 24Z]RAB]i?QLoAkX7^ZBf1
 R12
 R0
 l245
 L244
-V:Y[ZDk6oJY?h7cQ@_4eoG1
-!s100 azBGYL6PhJ`:QGLMc6;4J2
+Z19 V:Y[ZDk6oJY?h7cQ@_4eoG1
+Z20 !s100 azBGYL6PhJ`:QGLMc6;4J2
 R5
 32
 R6
@@ -107,61 +107,61 @@ R9
 R10
 R11
 Ewindow_buffer
-Z16 w1529400325
-Z17 DPx4 work 24 templatematchingtypepckg 0 22 XgW5L;o<7n]B1kFOWA35Q3
-R13
-R14
-R0
+Z21 w1529327883
+Z22 DPx4 work 24 templatematchingtypepckg 0 22 D<W;h`@2LA4JdOz^fH><T1
 R15
+R16
+R0
+R17
 R2
-Z18 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
-Z19 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
+Z23 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
+Z24 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd
 l0
 L9
-V1Rfh;^UWF:YenNGjoVjJE3
-!s100 <gC@@Hk5WD90EBf0S3;HJ1
+V]>J0`dnk55J5YnCbOOBjB2
+!s100 GO5aj85^XGn_c:naVb]>j2
 R5
 32
 R6
 !i10b 1
 R7
-Z20 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
-Z21 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
+Z25 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
+Z26 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer.vhd|
 !i113 1
 R10
 R11
 Aarch
-R17
-R13
-R14
-R0
+R22
 R15
-Z22 DEx4 work 13 window_buffer 0 22 1Rfh;^UWF:YenNGjoVjJE3
-l39
-L26
-VJnMAL71Lkn8>D@<mgSzzm2
-!s100 @01;loOJGi6iBJF7><M6L3
+R16
+R0
+R17
+Z27 DEx4 work 13 window_buffer 0 22 ]>J0`dnk55J5YnCbOOBjB2
+l38
+L27
+V`mE8`CLRPT_H:a8A5haeT3
+!s100 TMR`U?]NGQ=N60l9V2ORh1
 R5
 32
 R6
 !i10b 1
 R7
-R20
-R21
+R25
+R26
 !i113 1
 R10
 R11
 Ewindow_buffer_tb
-Z23 w1529399378
+Z28 w1529421720
 R12
-R17
-R13
-R14
-R0
+R22
 R15
+R16
+R0
+R17
 R2
-Z24 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
-Z25 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
+Z29 8C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
+Z30 FC:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd
 l0
 L12
 V[2>4Z[>2`Mfj=z@HV5Jc_1
@@ -171,31 +171,31 @@ R5
 R6
 !i10b 1
 R7
-Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
-Z27 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
+Z31 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
+Z32 !s107 C:/Users/jonas/source/repos/dspc_project/TemplateMatching/window_buffer/window_buffer_tb.vhd|
 !i113 1
 R10
 R11
 Aarch
-R22
+R27
 R12
-R17
-R13
-R14
-R0
+R22
 R15
+R16
+R0
+R17
 DEx4 work 16 window_buffer_tb 0 22 [2>4Z[>2`Mfj=z@HV5Jc_1
-l38
+l40
 L22
-V=N_k[aE5:ck?DCbV^S7N00
-!s100 U>n5m6kf>0_o?Fn=oA_Mj3
+V]WXJ97CGC]UCgQVPXBzfb0
+!s100 P8To[^V57?[P@oa415zEb2
 R5
 32
 R6
 !i10b 1
 R7
-R26
-R27
+R31
+R32
 !i113 1
 R10
 R11

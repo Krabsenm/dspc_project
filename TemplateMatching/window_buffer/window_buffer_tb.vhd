@@ -27,9 +27,11 @@ architecture arch of window_buffer_tb is
   signal   reset     : std_logic := '1';
   signal   in_data   : ImageRow_t;
   signal   in_valid  : std_logic := '0';
-  
-  signal   out_data  : WindowInfo16_t;
+  signal   in_begin  : std_logic := '0';
+  signal   out_data  : window_buffer_data_output_t;
   signal   out_valid : std_logic;
+  signal   out_data_0: WindowInfo_t;
+  signal   out_data_1: WindowInfo_t;
 
       -- clock
   signal end_sim : std_logic := '0';
@@ -46,6 +48,7 @@ begin  -- architecture
       reset     => reset,
       in_data   => in_data,
       in_valid  => in_valid,
+      in_begin  => in_begin,
       out_data  => out_data,
       out_valid => out_valid);
 
@@ -55,6 +58,7 @@ begin  -- architecture
   -- reset generation
   reset <= '1', '0' after 125 ns;
 	
+  out_data_0 <= out_data(0);
 
   
   -----------------------------
@@ -94,14 +98,18 @@ begin  -- architecture
         
         in_valid <= '1'; -- start sending valid package   
         in_data <= image_row;
-      
+        if (linecount = 0) then
+          in_begin <= '1';
+        else
+          in_begin <= '0';
+        end if; 
+
         wait until clk = '0';
         wait until clk = '1'; --for clockperiod;
         
         in_valid <= '0';
         
-        -- Wait the time it would take for 1 row to finish loading
-        for i in 0 to IMAGE_WIDTH*2 -2 loop
+        for i in 0 to IMAGE_WIDTH -2 loop
           wait until clk = '0';
           wait until clk = '1'; --for clockperiod;
         end loop;
@@ -123,29 +131,38 @@ begin  -- architecture
   monitor : process
     variable line: LINE;
     variable data: integer;
-    file videooutfile: TEXT open write_mode is "ImageOut.txt";
+    file videooutfile0: TEXT open write_mode is "ImageOut.txt";
   begin
     -- Create simulation files    
     --file_open(videooutfile, image_outName);
     
     wait until reset = '0';
+    wait until in_begin = '1';
+    wait until in_begin = '0';
+    wait until in_begin = '1';
     wait until out_valid = '1';
     
-    assert out_data.x = 0 AND out_data.y = 0
-      report "Got: [" & integer'image((out_data.x)) & "," 
-        & integer'image((out_data.y)) & "]. Expected: [0,0]"
-      severity error;
     
-    for row in 0 to TEMPLATE_SIZE/2 - 1 loop
-      for pixel in 0 to TEMPLATE_SIZE - 1 loop
-        -- Frame pixels stored in file
-        data := to_integer(out_data.window(row)(pixel));
-        write(line, data, right, 0, decimal); -- convert to decimal numbers
-        writeline((videooutfile), line); -- write next text line to file
+    for win in 0 to NUM_SAD - 1 loop
+      assert out_data(win).x = win AND out_data(win).y = 0
+        report "Got: [" & integer'image((out_data(win).x)) & "," 
+          & integer'image((out_data(win).y)) & "]. Expected: [" & 
+          integer'image(win) & ",0]"
+        severity error;
+      
+      for row in 0 to TEMPLATE_SIZE - 1 loop
+        for pixel in 0 to TEMPLATE_SIZE - 1 loop
+          -- Frame pixels stored in file
+          data := to_integer(out_data(win).window(row)(pixel));
+          write(line, data, right, 0, decimal); -- convert to decimal numbers
+          
+          writeline((videooutfile0), line); -- write next text line to file
+        end loop;
       end loop;
     end loop;
     
-    file_close(videooutfile);  
+    
+    file_close(videooutfile0);  
     report "Done writing output file";
     
     wait until out_valid = '0';

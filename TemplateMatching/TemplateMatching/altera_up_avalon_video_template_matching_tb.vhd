@@ -11,9 +11,9 @@ ENTITY altera_up_avalon_video_template_matching_tb IS
   GENERIC (
     image_width :INTEGER    := 320;   -- Image width in pixels
     image_height:INTEGER    := 240;   -- Image height in pixels
-    image_name: string      := "nature_doge.txt"; -- Contains image as text hex input format
+    image_name: string      := "imageTestFull.txt"; -- Contains image as text hex input format
     image_outName: string   := "ImageOut.txt";
-    template_image: string  := "nature_doge_temp.txt"
+    template_image: string  := "templateTestFull.txt"
   );
 END ENTITY;
 
@@ -30,7 +30,7 @@ architecture test_bench of altera_up_avalon_video_template_matching_tb is
   signal out_ready          :  STD_LOGIC;
 
   signal bypass             :  STD_LOGIC;
-  signal in_template        : Window_t;
+  signal in_template        :  Window_t;
   -- outputs
   signal in_ready           :  STD_LOGIC;
 
@@ -140,6 +140,10 @@ begin
       
               wait until clk = '1'; --for clockperiod;
               in_startofpacket <= '0';
+              
+              
+              --wait for clockperiod; -- insert for pixel every 2nd clk
+              
             else
               in_endofpacket <= '1';
               wait until clk = '1';

@@ -27,7 +27,7 @@ PORT (
 
   bypass             :IN    STD_LOGIC;
 
-  in_template        :IN    Window_t; -- remove????  
+  in_template        :IN    Window_t; -- Load from RAM?
   -- Bidirectional
 
   -- Outputs
@@ -57,7 +57,6 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
   -- Row buffer
   signal row_valid            :std_logic;  
   signal row_data             :ImageRow_t; 
-  signal row_begin            :std_logic;  
   
   -- Window buffer
   signal window_data          :window_buffer_data_output_t;
@@ -65,25 +64,13 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
   
   -- SADs
   signal template             :Window_t;
-  signal sad0_score           :Score_t;
-  signal sad0_valid           :std_logic;
-  signal sad0_x               :X_t;
-  signal sad0_y               :Y_t;
-  signal sad1_score           :Score_t;
-  signal sad1_valid           :std_logic;
-  signal sad1_x               :X_t;
-  signal sad1_y               :Y_t;
-  --signal sad2_score           :Score_t;
-  --signal sad2_valid           :std_logic;
-  --signal sad2_x               :X_t;
-  --signal sad2_y               :Y_t;
-  
-  signal sad0_scoreInfo       :ScoreInfo_t;
-  signal sad1_scoreInfo       :ScoreInfo_t;
-  --signal sad2_scoreInfo       :ScoreInfo_t;
-  
+  signal sad_score           :Score_t;
+  signal sad_valid           :std_logic;
+  signal sad_x               :X_t;
+  signal sad_y               :Y_t;
+
   -- Threshold
-  signal sad_valid            :std_logic_vector(NUM_SAD-1 downto 0);
+  signal sad_valids            :std_logic_vector(NUM_SAD-1 downto 0);
   signal sad_scoreInfo        :threshold_data_inputs_t;
   signal threshold_x          :X_t;
   signal threshold_y          :Y_t;
@@ -120,12 +107,12 @@ ARCHITECTURE arch OF altera_up_avalon_video_template_matching IS
 
 BEGIN
   template <= in_template;
-  sad_scoreInfo.score <= sad_score;
-  sad_scoreInfo.x     <= sad_x;
-  sad_scoreInfo.y     <= sad_y;
+  sad_scoreInfo(0).score <= sad_score;
+  sad_scoreInfo(0).x     <= sad_x;
+  sad_scoreInfo(0).y     <= sad_y;
   
-  sad_valid            <= sad_valid;
-  sad_scoreInfo        <= sad_scoreInfo;
+  sad_valids(0)            <= sad_valid;
+
   
 -- *****************************************************************************
 -- *                         Finite State Machine(s)                           *
@@ -136,7 +123,7 @@ BEGIN
 -- *                             Sequential Logic                              *
 -- *****************************************************************************
 
-  -- Output Registers ??????????????
+  -- Output Registers
   PROCESS (clk)
   BEGIN
     IF clk'EVENT AND clk = '1' THEN
@@ -227,8 +214,7 @@ BEGIN
     -- Outputs
     in_ready          => in_ready,
     out_valid         => row_valid,
-    out_data          => row_data,
-    out_begin         => row_begin
+    out_data          => row_data
   );
   
   window_buffer_l: entity work.window_buffer
@@ -239,7 +225,6 @@ BEGIN
 
     in_data           => row_data,
     in_valid          => row_valid,
-    in_begin          => row_begin,
 
     -- Outputs
     out_data          => window_data,
@@ -273,7 +258,7 @@ BEGIN
     clk                   => clk,
     reset                 => reset,
     
-    valid_in              => sad_valid,   
+    valid_in              => sad_valids,   
     scores_in             => sad_scoreInfo,
 
     -- Outputs

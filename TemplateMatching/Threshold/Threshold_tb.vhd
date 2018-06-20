@@ -77,25 +77,21 @@ begin  -- architecture Bhv
     wait until clk = '1'; -- Align clock
     
     -- Simulate three output from the SAD module
-    scores_in(0) <= ("000000000010000111", 1,1);
-    scores_in(1) <= ("000000000001000010", 2,1);
-    scores_in(2) <= ("000000100000000001", 3,1);
-    valid_in     <= "111";
+    scores_in(0) <= ("000000000011000111", 1,1);
+    valid_in     <= "1";
 
     wait until clk = '0';
     wait until clk = '1';
       
     -- Simulate three other output from SAD module
     scores_in(0) <= ("000000000010000111", 1,2);
-    scores_in(1) <= ("000000000000000010", 2,2);
-    scores_in(2) <= ("000000000000010001", 3,2);
-    valid_in     <= "111";
+    valid_in     <= "1";
     
     wait until clk = '0';
     wait until clk = '1';
     
     
-    valid_in <= "000";
+    valid_in <= "0";
     
     wait;
   end process StimuliProcess;
@@ -114,8 +110,8 @@ begin  -- architecture Bhv
     wait until valid_out = '1';
     
     -- The best output should be the second scores_in(1), which has coordinate (2,2)
-    assert (x_out = 2 AND y_out = 2)
-      report "Wrong coordinate! Expected: (2,2), but got: (" &  integer'image(x_out) & "," & integer'image(y_out) & ")"
+    assert (x_out = 1 AND y_out = 2)
+      report "Wrong coordinate! Expected: (1,2), but got: (" &  integer'image(x_out) & "," & integer'image(y_out) & ")"
       severity error;
   
     wait for clockperiod;
