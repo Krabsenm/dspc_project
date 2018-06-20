@@ -6,18 +6,35 @@
 # Compile of TemplateMatchingTypePckg.vhd was successful.
 # Compile of io_utils.vhd was successful with warnings.
 # 4 compiles, 0 failed with no errors.
-# Compile of window_buffer_tb.vhd failed with 4 errors.
-# Compile of window_buffer.vhd was successful.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 1 failed with 4 errors.
 # Compile of window_buffer_tb.vhd was successful.
 # Compile of window_buffer.vhd was successful.
 # Compile of TemplateMatchingTypePckg.vhd was successful.
 # Compile of io_utils.vhd was successful with warnings.
 # 4 compiles, 0 failed with no errors.
-# Compile of window_buffer_tb.vhd was successful.
-# Compile of window_buffer.vhd was successful.
-# Compile of TemplateMatchingTypePckg.vhd was successful.
-# Compile of io_utils.vhd was successful with warnings.
-# 4 compiles, 0 failed with no errors.
+vsim -gui work.window_buffer_tb
+# vsim -gui work.window_buffer_tb 
+# Start time: 19:36:16 on Jun 20,2018
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading ieee.math_real(body)
+# Loading work.templatematchingtypepckg
+# Loading work.io_utils(body)
+# Loading work.window_buffer_tb(arch)
+# Loading work.window_buffer(arch)
+add wave -position insertpoint sim:/window_buffer_tb/*
+add wave -position insertpoint  \
+sim:/window_buffer_tb/window_buffer_INST/state \
+sim:/window_buffer_tb/window_buffer_INST/x_counter \
+sim:/window_buffer_tb/window_buffer_INST/y_counter \
+sim:/window_buffer_tb/window_buffer_INST/row_counter
+run -all
+# ** Note: Reading file
+#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
+# ** Note: Starting to read file
+#    Time: 145 ns  Iteration: 0  Instance: /window_buffer_tb
+# ** Note: Done writing output file
+#    Time: 867365 ns  Iteration: 1  Instance: /window_buffer_tb
+# End time: 19:41:43 on Jun 20,2018, Elapsed time: 0:05:27
+# Errors: 0, Warnings: 0
